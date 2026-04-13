@@ -1,6 +1,6 @@
 [
-  { "title": "Magnesium Sulfat Heptahydrat", "file": "docs/Magnesium_Sulfat_Heptahydrat.pdf" },
-  { "title": "Arang Aktif", "file": "docs/Malachite_Green.pdf" },
-  { "title": "Asam 2,4-D", "file": "docs/Mangan_Sulfat_Monohydrat.pdf" },
-  { "title": "Asam Askorbat", "file": "docs/Marker_100_bp.pdf" }
+  { "title": "Magnesium Sulfat Heptahydrat", "file": "/MSDS-TPTP24B/docs/Magnesium_Sulfat_Heptahydrat.pdf" },
+  { "title": "Arang Aktif", "file": "/MSDS-TPTP24B/docs/Malachite_Green.pdf" },
+  { "title": "Asam 2,4-D", "file": "/MSDS-TPTP24B/docs/Mangan_Sulfat_Monohydrat.pdf" },
+  { "title": "Asam Askorbat", "file": "/MSDS-TPTP24B/docs/Marker_100_bp.pdf" }
 ]
