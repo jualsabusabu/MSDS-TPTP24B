@@ -1,17 +1,17 @@
 let data = [];
 
-const BASE = "";
+// ambil elemen
 const list = document.getElementById('list');
 const search = document.getElementById('search');
 
-// masuk app
+// ================= MASUK APP =================
 function enterApp() {
   document.getElementById('landing').style.display = 'none';
   document.getElementById('app').style.display = 'block';
   showSection('msds');
 }
 
-// navigation
+// ================= NAVIGATION =================
 function showSection(id) {
   document.querySelectorAll('.section').forEach(sec => {
     sec.classList.remove('active');
@@ -20,12 +20,10 @@ function showSection(id) {
   document.getElementById(id).classList.add('active');
 }
 
-// load data
+// ================= LOAD DATA =================
 fetch('./msds.json')
   .then(res => {
-    if (!res.ok) {
-      throw new Error("Gagal load msds.json");
-    }
+    if (!res.ok) throw new Error("Gagal load msds.json");
     return res.json();
   })
   .then(json => {
@@ -37,16 +35,18 @@ fetch('./msds.json')
     alert("Data MSDS gagal dimuat");
   });
 
-// search
+// ================= SEARCH =================
 search.addEventListener('input', function () {
   const keyword = this.value.toLowerCase();
+
   const filtered = data.filter(item =>
     item.title.toLowerCase().includes(keyword)
   );
+
   render(filtered);
 });
 
-// render
+// ================= RENDER LIST =================
 function render(items) {
   list.innerHTML = '';
 
@@ -57,11 +57,14 @@ function render(items) {
     const a = document.createElement('a');
     a.textContent = item.title;
 
-    const url = window.location.origin + item.file;
+    // 🔥 PENTING: langsung pakai path dari JSON
+    a.href = item.file;
 
-    a.href = url;
+    // buka di tab baru (fix untuk HP)
     a.target = "_blank";
+    a.rel = "noopener noreferrer";
 
+    // styling biar full klik
     a.style.display = "block";
     a.style.width = "100%";
     a.style.textDecoration = "none";
@@ -69,19 +72,5 @@ function render(items) {
 
     li.appendChild(a);
     list.appendChild(li);
-
   });
 }
-
-function openFullscreen() {
-  const iframe = document.getElementById("viewerFrame");
-
-  if (iframe.requestFullscreen) {
-    iframe.requestFullscreen();
-  } else if (iframe.webkitRequestFullscreen) {
-    iframe.webkitRequestFullscreen();
-  } else if (iframe.msRequestFullscreen) {
-    iframe.msRequestFullscreen();
-  }
-}
-
