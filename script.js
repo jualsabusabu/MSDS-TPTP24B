@@ -94,3 +94,8 @@ function openFullscreen() {
     iframe.msRequestFullscreen();
   }
 }
+
+if (isMobile) {
+  window.location.href = url;
+  return;
+}
