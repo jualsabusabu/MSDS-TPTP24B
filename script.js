@@ -94,3 +94,7 @@ function openFullscreen() {
   }
 }
 
+if (isMobile) {
+  alert("File akan dibuka di tab baru");
+  window.open(url, '_blank');
+}
