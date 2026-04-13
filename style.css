@@ -215,65 +215,9 @@ button:hover {
 }
 
 @media (max-width: 768px) {
-
-  /* 1. NAVBAR JANGAN MELEBAR */
-  .navbar {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-
-  /* 2. CONTAINER JADI VERTIKAL */
-  .container {
-    flex-direction: column;
-    height: auto;
-  }
-
-  /* 3. SIDEBAR JADI SCROLL SAMPING */
-  .sidebar {
-    width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-  }
-
-  .sidebar ul {
-    display: flex;
-    gap: 10px;
-  }
-
-  li {
-    min-width: 140px;
-    text-align: center;
-  }
-
-  /* 4. VIEWER FULL KE BAWAH */
-  .viewer {
-    width: 100%;
-    height: 65vh;
-  }
-
-  #viewerFrame {
-    height: 100%;
-  }
-
-  /* 5. INFO BAR JANGAN MELEBAR */
-  .info-bar {
-    flex-direction: column;
-    gap: 5px;
-  }
-
-  /* 6. SEARCH BIAR ENAK DIPENCET */
-  #search {
-    font-size: 16px;
-  }
-
-  /* 7. LANDING BIAR GA KEGEPENG */
-  .overlay {
-    width: 90%;
-    padding: 20px;
-  }
-
-  .overlay h1 {
-    font-size: 24px;
-  }
+  .container { flex-direction: column; }
+  .sidebar { width: 100%; overflow-x: auto; }
+  .sidebar ul { display: flex; }
+  li { min-width: 140px; }
+  .viewer { height: 65vh; }
 }
