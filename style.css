@@ -10,7 +10,7 @@ body {
   background: linear-gradient(to right, #f1f5f9, #e2e8f0);
 }
 
-/* FIX LIST DEFAULT */
+/* FIX DEFAULT LIST */
 ul {
   list-style: none;
   padding: 0;
@@ -31,10 +31,6 @@ ul {
   border-radius: 12px;
   color: white;
   text-align: center;
-}
-
-.overlay button {
-  margin-top: 15px;
 }
 
 /* APP */
@@ -74,6 +70,7 @@ ul {
   width: 100%;
   padding: 12px;
   border-radius: 10px;
+  border: 1px solid #ccc;
 }
 
 /* CONTAINER */
@@ -85,21 +82,29 @@ ul {
 
 /* SIDEBAR */
 .sidebar {
-  width: 250px;
+  width: 260px;
   overflow-y: auto;
+  background: #f8fafc;
+  border-radius: 10px;
+  padding: 5px;
 }
 
 /* LIST ITEM */
 li {
+  margin: 5px 0;
+}
+
+li a {
+  display: block;
   padding: 12px;
-  margin: 6px;
   background: #fff;
-  border-radius: 10px;
-  cursor: pointer;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #111;
   transition: 0.2s;
 }
 
-li:hover {
+li a:hover {
   background: #e2e8f0;
 }
 
@@ -108,13 +113,6 @@ li:hover {
   flex: 1;
   display: flex;
   flex-direction: column;
-}
-
-#viewerFrame {
-  width: 100%;
-  flex: 1;
-  border: none;
-  display: none;
 }
 
 /* INFO BAR */
@@ -128,7 +126,15 @@ li:hover {
   font-size: 14px;
 }
 
-/* EMPTY */
+/* PDF */
+#viewerFrame {
+  width: 100%;
+  flex: 1;
+  border: none;
+  display: none;
+}
+
+/* EMPTY STATE */
 #emptyState {
   text-align: center;
   margin-top: 50px;
@@ -157,45 +163,51 @@ button {
   cursor: pointer;
 }
 
-/* ================= MOBILE FIX ================= */
+button:hover {
+  background: #2563eb;
+}
+
+/* ================= MOBILE ================= */
 @media (max-width: 768px) {
 
+  /* NAVBAR */
   .navbar {
     flex-direction: column;
     align-items: center;
     gap: 10px;
   }
 
+  /* LAYOUT */
   .container {
     flex-direction: column;
     height: auto;
   }
 
-  /* sidebar horizontal */
+  /* SIDEBAR → VERTICAL LIST (FIX UTAMA) */
   .sidebar {
     width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
+    max-height: 200px;
+    overflow-y: auto;
   }
 
-  .sidebar ul {
-    display: flex;
-    gap: 10px;
+  /* LIST FULL WIDTH */
+  li a {
+    width: 100%;
   }
 
-  /* item horizontal fix */
-  li {
-    min-width: 140px;
-    margin: 0;
-    flex-shrink: 0;
-    text-align: center;
-  }
-
+  /* VIEWER */
   .viewer {
     height: 65vh;
   }
 
+  /* INFO */
   .info-bar {
     flex-direction: column;
+  }
+
+  /* LANDING */
+  .overlay {
+    width: 90%;
+    padding: 20px;
   }
 }
