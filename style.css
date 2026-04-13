@@ -40,6 +40,7 @@ body {
 .dashboard {
   display: flex;
   height: 100vh;
+  overflow: hidden;
 }
 
 /* SIDEBAR */
@@ -61,20 +62,27 @@ body {
   width: 40px;
 }
 
+/* NAV BUTTON */
 .sidebar button {
   width: 100%;
   padding: 12px;
-  background: none;
-  border: none;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  background: transparent;
   color: #cbd5f5;
+  border: none;
   text-align: left;
-  border-radius: 8px;
-  margin-bottom: 5px;
   cursor: pointer;
+  transition: 0.2s;
 }
 
 .sidebar button:hover {
   background: #1e293b;
+  color: white;
+}
+
+.sidebar button.active {
+  background: #16a34a;
   color: white;
 }
 
@@ -83,6 +91,7 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
+  background: #f1f5f9;
 }
 
 /* TOPBAR */
@@ -129,18 +138,14 @@ body {
 .file-list li {
   list-style: none;
   margin-bottom: 6px;
-}
-
-.file-list a {
-  display: block;
   padding: 12px;
   background: white;
   border-radius: 8px;
-  text-decoration: none;
-  color: #111;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
-.file-list a:hover {
+.file-list li:hover {
   background: #dcfce7;
 }
 
@@ -184,7 +189,7 @@ body {
   border-radius: 10px;
 }
 
-/* BUTTON */
+/* BUTTON GLOBAL */
 button {
   padding: 8px 14px;
   border-radius: 8px;
@@ -205,8 +210,38 @@ button:hover {
     flex-direction: column;
   }
 
+  /* NAVBAR JADI BAWAH */
   .sidebar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0;
+    z-index: 999;
+  }
+
+  .sidebar nav {
+    display: flex;
+    width: 100%;
+  }
+
+  .sidebar button {
+    flex: 1;
+    text-align: center;
+    font-size: 12px;
+    margin: 0;
+  }
+
+  .brand {
     display: none;
+  }
+
+  .main {
+    padding-bottom: 70px;
   }
 
   .topbar {
@@ -222,14 +257,9 @@ button:hover {
   .file-list {
     width: 100%;
     max-height: 250px;
-    overflow-y: auto;
   }
 
   .viewer {
     height: 60vh;
-  }
-
-  .info-bar {
-    font-size: 13px;
   }
 }
