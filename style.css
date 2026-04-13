@@ -6,13 +6,8 @@
 }
 
 body {
-  font-family: Arial;
-  background: linear-gradient(to right, #f1f5f9, #e2e8f0);
-}
-
-/* LIST RESET */
-ul {
-  list-style: none;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f1f5f9;
 }
 
 /* LANDING */
@@ -26,10 +21,14 @@ ul {
 
 .overlay {
   background: rgba(0,0,0,0.6);
-  padding: 40px;
+  padding: 30px;
   border-radius: 12px;
   color: white;
   text-align: center;
+}
+
+.overlay button {
+  margin-top: 15px;
 }
 
 /* APP */
@@ -37,22 +36,68 @@ ul {
   display: none;
 }
 
-/* NAVBAR */
-.navbar {
+/* DASHBOARD */
+.dashboard {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 20px;
+  height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 230px;
   background: #0f172a;
+  color: white;
+  padding: 20px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.brand img {
+  width: 40px;
+}
+
+.sidebar button {
+  width: 100%;
+  padding: 12px;
+  background: none;
+  border: none;
+  color: #cbd5f5;
+  text-align: left;
+  border-radius: 8px;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+.sidebar button:hover {
+  background: #1e293b;
   color: white;
 }
 
-.menu button {
-  margin-left: 10px;
-  background: none;
-  border: none;
-  color: white;
-  cursor: pointer;
+/* MAIN */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* TOPBAR */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 20px;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.topbar input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
 }
 
 /* SECTION */
@@ -65,56 +110,38 @@ ul {
   display: block;
 }
 
-/* HEADER */
-.header {
-  background: white;
-  padding: 15px;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
-
-/* SEARCH */
-#search {
-  width: 100%;
-  padding: 12px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-}
-
 /* CONTAINER */
 .container {
   display: flex;
   gap: 10px;
-  height: calc(100vh - 140px);
+  height: calc(100vh - 70px);
 }
 
-/* SIDEBAR */
-.sidebar {
+/* FILE LIST */
+.file-list {
   width: 260px;
   background: #f8fafc;
-  border-radius: 10px;
-  padding: 8px;
+  padding: 10px;
   overflow-y: auto;
+  border-radius: 10px;
 }
 
-/* LIST ITEM */
-li {
+.file-list li {
+  list-style: none;
   margin-bottom: 6px;
 }
 
-li a {
+.file-list a {
   display: block;
   padding: 12px;
-  background: #ffffff;
+  background: white;
   border-radius: 8px;
   text-decoration: none;
   color: #111;
-  font-size: 14px;
-  transition: 0.2s;
 }
 
-li a:hover {
-  background: #e2e8f0;
+.file-list a:hover {
+  background: #dcfce7;
 }
 
 /* VIEWER */
@@ -124,24 +151,18 @@ li a:hover {
   flex-direction: column;
 }
 
-/* INFO BAR */
 .info-bar {
-  display: flex;
-  gap: 10px;
-  background: #fff;
+  background: white;
   padding: 10px;
   border-radius: 10px;
   margin-bottom: 10px;
-  font-size: 14px;
 }
 
-/* PDF VIEW */
 #viewerFrame {
-  width: 100%;
   flex: 1;
   border: none;
-  display: none;
   border-radius: 10px;
+  display: none;
 }
 
 /* EMPTY */
@@ -167,71 +188,48 @@ li a:hover {
 button {
   padding: 8px 14px;
   border-radius: 8px;
-  background: #3b82f6;
+  background: #16a34a;
   color: white;
   border: none;
   cursor: pointer;
 }
 
 button:hover {
-  background: #2563eb;
+  background: #15803d;
 }
 
 /* ================= MOBILE ================= */
 @media (max-width: 768px) {
 
-  body {
-    padding: 10px;
+  .dashboard {
+    flex-direction: column;
   }
 
-  /* NAVBAR */
-  .navbar {
+  .sidebar {
+    display: none;
+  }
+
+  .topbar {
     flex-direction: column;
     gap: 10px;
-    text-align: center;
   }
 
-  /* HEADER */
-  .header {
-    padding: 10px;
-  }
-
-  /* LAYOUT */
   .container {
     flex-direction: column;
     height: auto;
   }
 
-  /* SIDEBAR (FIX UTAMA) */
-  .sidebar {
+  .file-list {
     width: 100%;
-    max-height: 300px;
+    max-height: 250px;
     overflow-y: auto;
-    background: white;
-    padding: 10px;
   }
 
-  /* LIST */
-  li a {
-    font-size: 14px;
-    padding: 12px;
-  }
-
-  /* VIEWER */
   .viewer {
     height: 60vh;
   }
 
-  /* INFO */
   .info-bar {
-    flex-direction: column;
-    gap: 5px;
     font-size: 13px;
-  }
-
-  /* LANDING */
-  .overlay {
-    width: 90%;
-    padding: 20px;
   }
 }
