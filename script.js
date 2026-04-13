@@ -7,22 +7,32 @@ const viewerFrame = document.getElementById('viewerFrame');
 const viewerTitle = document.getElementById('viewerTitle');
 const emptyState = document.getElementById('emptyState');
 
-// masuk app
+// MASUK APP
 function enterApp() {
   document.getElementById('landing').style.display = 'none';
   document.getElementById('app').style.display = 'flex';
   showSection('msds');
 }
 
-// navigation
+// NAVIGATION
 function showSection(id) {
   document.querySelectorAll('.section').forEach(sec => {
     sec.classList.remove('active');
   });
+
   document.getElementById(id).classList.add('active');
+
+  // ACTIVE BUTTON
+  document.querySelectorAll('.sidebar button').forEach(btn => {
+    btn.classList.remove('active');
+  });
+
+  if (event && event.target) {
+    event.target.classList.add('active');
+  }
 }
 
-// load data
+// LOAD DATA
 fetch('./msds.json')
   .then(res => res.json())
   .then(json => {
@@ -34,16 +44,18 @@ fetch('./msds.json')
     alert("Gagal load data MSDS");
   });
 
-// search
-search.addEventListener('input', function () {
-  const keyword = this.value.toLowerCase();
-  const filtered = data.filter(item =>
-    item.title.toLowerCase().includes(keyword)
-  );
-  render(filtered);
-});
+// SEARCH
+if (search) {
+  search.addEventListener('input', function () {
+    const keyword = this.value.toLowerCase();
+    const filtered = data.filter(item =>
+      item.title.toLowerCase().includes(keyword)
+    );
+    render(filtered);
+  });
+}
 
-// render list
+// RENDER LIST
 function render(items) {
   list.innerHTML = '';
 
@@ -60,19 +72,17 @@ function render(items) {
   });
 }
 
-// buka file
+// OPEN FILE
 function openFile(file, title) {
 
   const isMobile = window.innerWidth <= 768;
   const url = window.location.origin + file;
 
   if (isMobile) {
-    // HP → buka tab baru
     window.open(url, "_blank");
     return;
   }
 
-  // desktop → iframe
   viewerFrame.src = url + "#zoom=page-width";
   viewerTitle.textContent = title;
 
