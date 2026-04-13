@@ -10,10 +10,9 @@ body {
   background: linear-gradient(to right, #f1f5f9, #e2e8f0);
 }
 
-/* FIX DEFAULT LIST */
+/* LIST RESET */
 ul {
   list-style: none;
-  padding: 0;
 }
 
 /* LANDING */
@@ -42,15 +41,24 @@ ul {
 .navbar {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 15px 20px;
   background: #0f172a;
   color: white;
 }
 
+.menu button {
+  margin-left: 10px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
 /* SECTION */
 .section {
   display: none;
-  padding: 10px;
+  padding: 15px;
 }
 
 .section.active {
@@ -76,31 +84,32 @@ ul {
 /* CONTAINER */
 .container {
   display: flex;
-  height: calc(100vh - 140px);
   gap: 10px;
+  height: calc(100vh - 140px);
 }
 
 /* SIDEBAR */
 .sidebar {
   width: 260px;
-  overflow-y: auto;
   background: #f8fafc;
   border-radius: 10px;
-  padding: 5px;
+  padding: 8px;
+  overflow-y: auto;
 }
 
 /* LIST ITEM */
 li {
-  margin: 5px 0;
+  margin-bottom: 6px;
 }
 
 li a {
   display: block;
   padding: 12px;
-  background: #fff;
+  background: #ffffff;
   border-radius: 8px;
   text-decoration: none;
   color: #111;
+  font-size: 14px;
   transition: 0.2s;
 }
 
@@ -126,15 +135,16 @@ li a:hover {
   font-size: 14px;
 }
 
-/* PDF */
+/* PDF VIEW */
 #viewerFrame {
   width: 100%;
   flex: 1;
   border: none;
   display: none;
+  border-radius: 10px;
 }
 
-/* EMPTY STATE */
+/* EMPTY */
 #emptyState {
   text-align: center;
   margin-top: 50px;
@@ -170,11 +180,20 @@ button:hover {
 /* ================= MOBILE ================= */
 @media (max-width: 768px) {
 
+  body {
+    padding: 10px;
+  }
+
   /* NAVBAR */
   .navbar {
     flex-direction: column;
-    align-items: center;
     gap: 10px;
+    text-align: center;
+  }
+
+  /* HEADER */
+  .header {
+    padding: 10px;
   }
 
   /* LAYOUT */
@@ -183,26 +202,31 @@ button:hover {
     height: auto;
   }
 
-  /* SIDEBAR → VERTICAL LIST (FIX UTAMA) */
+  /* SIDEBAR (FIX UTAMA) */
   .sidebar {
     width: 100%;
-    max-height: 200px;
+    max-height: 300px;
     overflow-y: auto;
+    background: white;
+    padding: 10px;
   }
 
-  /* LIST FULL WIDTH */
+  /* LIST */
   li a {
-    width: 100%;
+    font-size: 14px;
+    padding: 12px;
   }
 
   /* VIEWER */
   .viewer {
-    height: 65vh;
+    height: 60vh;
   }
 
   /* INFO */
   .info-bar {
     flex-direction: column;
+    gap: 5px;
+    font-size: 13px;
   }
 
   /* LANDING */
