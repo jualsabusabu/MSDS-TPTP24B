@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MSDS Library</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- LANDING -->
+<section id="landing">
+  <div class="overlay">
+    <h1>MSDS Library</h1>
+    <p>Kumpulan dokumen keselamatan bahan kimia</p>
+    <button onclick="enterApp()">Masuk</button>
+  </div>
+</section>
+
+<div id="app">
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="logo">MSDS</div>
+  <div class="menu">
+    <button onclick="showSection('msds')">MSDS</button>
+    <button onclick="showSection('about')">About</button>
+    <button onclick="showSection('gallery')">Gallery</button>
+  </div>
+</nav>
+
+<!-- ================= MSDS ================= -->
+<section id="msds" class="section">
+
+  <!-- HEADER -->
+  <header class="header">
+    <h1>MSDS Library</h1>
+
+    <div class="search-box">
+      <input type="text" id="search" placeholder="🔍 Cari bahan kimia...">
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <div class="container">
+
+  <aside class="sidebar">
+    <ul id="list"></ul>
+  </aside>
+
+  <div class="viewer">
+
+    <div class="info-bar">
+      <div class="info-item">📄 Dokumen: <span id="viewerTitle">-</span></div>
+      <div class="info-item">📂 Kategori: MSDS</div>
+      <div class="info-item">📥 Status: Ready</div>
+    </div>
+
+    <div id="emptyState">
+      <h3>Pilih dokumen</h3>
+      <p>Silakan pilih MSDS di sebelah kiri</p>
+    </div>
+
+    <iframe id="viewerFrame"></iframe>
+
+  </div>
+
+</div>
+
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about" class="section">
+  <h2>About TPTP</h2>
+  <p>TPTP 24 Is a Wonderful</p>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<section id="gallery" class="section">
+  <h2>Gallery</h2>
+
+  <div class="gallery-grid">
+    <img src="gallery/img1.jpeg">
+    <img src="gallery/img2.jpeg">
+    <img src="gallery/img3.jpeg">
+  </div>
+</section>
+
+<script src="script.js"></script>
+
+</body>
+</html>
