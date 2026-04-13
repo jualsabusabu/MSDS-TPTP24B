@@ -46,29 +46,32 @@ search.addEventListener('input', function () {
 });
 
 // render
-const a = document.createElement('a');
-a.textContent = item.title;
+function render(items) {
+  list.innerHTML = '';
 
-// bikin URL full
-const url = window.location.origin + BASE + item.file;
+  items.forEach(item => {
 
-a.href = url;
-a.target = "_blank"; // 🔥 ini kunci
+    const li = document.createElement('li');
 
-li.appendChild(a);
-// preview
-function preview(file, title) {
+    const a = document.createElement('a');
+    a.textContent = item.title;
 
-  const url = window.location.origin + BASE + file;
+    const url = window.location.origin + BASE + item.file;
 
-  // DETEKSI DEVICE YANG LEBIH AKURAT
-  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    a.href = url;
+    a.target = "_blank";
 
-  if (isMobile) {
-    // buka di tab baru (HP)
-    window.open(url, '_blank');
-    return;
-  }
+    // bikin full klik area
+    a.style.display = "block";
+    a.style.width = "100%";
+    a.style.textDecoration = "none";
+    a.style.color = "inherit";
+
+    li.appendChild(a);
+    list.appendChild(li);
+
+  });
+}
 
   // desktop tetap iframe
   document.getElementById('viewerFrame').src = url;
