@@ -66,20 +66,21 @@ function preview(file, title) {
 
   const url = window.location.origin + BASE + file;
 
-  // DETEKSI HP
-  const isMobile = window.innerWidth <= 768;
+  // DETEKSI DEVICE YANG LEBIH AKURAT
+  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
   if (isMobile) {
-    // HP → buka tab baru
+    // buka di tab baru (HP)
     window.open(url, '_blank');
-  } else {
-    // Desktop → tampil di iframe
-    document.getElementById('viewerFrame').src = url;
-    document.getElementById('viewerTitle').textContent = title;
-
-    document.getElementById('emptyState').style.display = 'none';
-    document.getElementById('viewerFrame').style.display = 'block';
+    return;
   }
+
+  // desktop tetap iframe
+  document.getElementById('viewerFrame').src = url;
+  document.getElementById('viewerTitle').textContent = title;
+
+  document.getElementById('emptyState').style.display = 'none';
+  document.getElementById('viewerFrame').style.display = 'block';
 }
 
 function openFullscreen() {
@@ -92,9 +93,4 @@ function openFullscreen() {
   } else if (iframe.msRequestFullscreen) {
     iframe.msRequestFullscreen();
   }
-}
-
-if (isMobile) {
-  alert("File akan dibuka di tab baru");
-  window.open(url, '_blank');
 }
