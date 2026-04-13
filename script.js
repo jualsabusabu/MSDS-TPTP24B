@@ -63,9 +63,12 @@ function render(items) {
 
 // preview
 function preview(file, title) {
-  document.getElementById('viewerFrame').src = file + "#zoom=page-width";
-  document.getElementById('viewerTitle').textContent = title;
+  const url = window.location.origin + BASE + file;
 
+  document.getElementById('viewerFrame').src =
+    "https://docs.google.com/gview?url=" + url + "&embedded=true";
+
+  document.getElementById('viewerTitle').textContent = title;
   document.getElementById('emptyState').style.display = 'none';
   document.getElementById('viewerFrame').style.display = 'block';
 }
