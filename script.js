@@ -63,14 +63,23 @@ function render(items) {
 
 // preview
 function preview(file, title) {
+
   const url = window.location.origin + BASE + file;
 
-  document.getElementById('viewerFrame').src =
-    "https://docs.google.com/gview?url=" + url + "&embedded=true";
+  // DETEKSI HP
+  const isMobile = window.innerWidth <= 768;
 
-  document.getElementById('viewerTitle').textContent = title;
-  document.getElementById('emptyState').style.display = 'none';
-  document.getElementById('viewerFrame').style.display = 'block';
+  if (isMobile) {
+    // HP → buka tab baru
+    window.open(url, '_blank');
+  } else {
+    // Desktop → tampil di iframe
+    document.getElementById('viewerFrame').src = url;
+    document.getElementById('viewerTitle').textContent = title;
+
+    document.getElementById('emptyState').style.display = 'none';
+    document.getElementById('viewerFrame').style.display = 'block';
+  }
 }
 
 function openFullscreen() {
