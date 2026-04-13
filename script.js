@@ -1,5 +1,6 @@
 let data = [];
 
+const BASE = "";
 const list = document.getElementById('list');
 const search = document.getElementById('search');
 
@@ -56,12 +57,11 @@ function render(items) {
     const a = document.createElement('a');
     a.textContent = item.title;
 
-    const url = window.location.origin + BASE + item.file;
+    const url = window.location.origin + item.file;
 
     a.href = url;
     a.target = "_blank";
 
-    // bikin full klik area
     a.style.display = "block";
     a.style.width = "100%";
     a.style.textDecoration = "none";
@@ -71,14 +71,6 @@ function render(items) {
     list.appendChild(li);
 
   });
-}
-
-  // desktop tetap iframe
-  document.getElementById('viewerFrame').src = url;
-  document.getElementById('viewerTitle').textContent = title;
-
-  document.getElementById('emptyState').style.display = 'none';
-  document.getElementById('viewerFrame').style.display = 'block';
 }
 
 function openFullscreen() {
@@ -93,7 +85,3 @@ function openFullscreen() {
   }
 }
 
-if (isMobile) {
-  window.location.href = url;
-  return;
-}
