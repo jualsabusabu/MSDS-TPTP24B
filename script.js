@@ -46,21 +46,16 @@ search.addEventListener('input', function () {
 });
 
 // render
-function render(items) {
-  list.innerHTML = '';
+const a = document.createElement('a');
+a.textContent = item.title;
 
-  items.forEach(item => {
-    const li = document.createElement('li');
-    li.textContent = item.title;
+// bikin URL full
+const url = window.location.origin + BASE + item.file;
 
-    li.onclick = () => {
-      preview(item.file, item.title);
-    };
+a.href = url;
+a.target = "_blank"; // 🔥 ini kunci
 
-    list.appendChild(li);
-  });
-}
-
+li.appendChild(a);
 // preview
 function preview(file, title) {
 
