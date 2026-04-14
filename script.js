@@ -89,3 +89,35 @@ function openFile(file, title) {
   emptyState.style.display = "none";
   viewerFrame.style.display = "block";
 }
+
+// ===== GALLERY MODAL =====
+const images = document.querySelectorAll('#galleryGrid img');
+const modal = document.getElementById('modal');
+const modalImg = document.getElementById('modalImg');
+
+let index = 0;
+
+images.forEach((img, i) => {
+  img.addEventListener('click', () => {
+    modal.style.display = 'flex';
+    modalImg.src = img.src;
+    index = i;
+  });
+});
+
+// CLOSE
+document.getElementById('closeBtn').onclick = () => {
+  modal.style.display = 'none';
+};
+
+// NEXT
+document.querySelector('.next').onclick = () => {
+  index = (index + 1) % images.length;
+  modalImg.src = images[index].src;
+};
+
+// PREV
+document.querySelector('.prev').onclick = () => {
+  index = (index - 1 + images.length) % images.length;
+  modalImg.src = images[index].src;
+};
