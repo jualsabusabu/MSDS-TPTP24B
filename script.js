@@ -121,3 +121,46 @@ document.querySelector('.prev').onclick = () => {
   index = (index - 1 + images.length) % images.length;
   modalImg.src = images[index].src;
 };
+
+// ===== GALLERY PRO =====
+const cards = document.querySelectorAll('.card');
+const modal = document.getElementById('modal');
+const modalImg = document.getElementById('modalImg');
+const modalTitle = document.getElementById('modalTitle');
+const modalDesc = document.getElementById('modalDesc');
+const counter = document.getElementById('counter');
+
+let current = 0;
+
+function showImage(index) {
+  const card = cards[index];
+  modalImg.src = card.querySelector('img').src;
+  modalTitle.textContent = card.dataset.title;
+  modalDesc.textContent = card.dataset.desc;
+  counter.textContent = `${index + 1} / ${cards.length}`;
+}
+
+cards.forEach((card, i) => {
+  card.addEventListener('click', () => {
+    modal.style.display = 'flex';
+    current = i;
+    showImage(current);
+  });
+});
+
+// CLOSE
+document.getElementById('closeBtn').onclick = () => {
+  modal.style.display = 'none';
+};
+
+// NEXT
+document.querySelector('.next').onclick = () => {
+  current = (current + 1) % cards.length;
+  showImage(current);
+};
+
+// PREV
+document.querySelector('.prev').onclick = () => {
+  current = (current - 1 + cards.length) % cards.length;
+  showImage(current);
+};
