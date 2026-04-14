@@ -8,9 +8,6 @@
 </head>
 <body>
 
-<!-- LOADER -->
-<div id="loader">Loading...</div>
-
 <!-- LANDING -->
 <section id="landing">
   <div class="overlay">
@@ -26,13 +23,14 @@
   <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="brand">
+      <img src="logo.png">
       <span>TPTP 24B</span>
     </div>
 
     <nav>
-      <button onclick="showSection('msds', this)">📂 MSDS</button>
-      <button onclick="showSection('gallery', this)">📷 Gallery</button>
-      <button onclick="showSection('about', this)">📝 About</button>
+      <button onclick="showSection('msds')">📂 MSDS</button>
+      <button onclick="showSection('gallery')">🎞️˙✧˖°📷 ༘ ⋆｡˚ Gallery</button>
+      <button onclick="showSection('about')">📝 About</button>
     </nav>
   </aside>
 
@@ -43,13 +41,6 @@
     <div class="topbar">
       <h2>MSDS Library</h2>
       <input type="text" id="search" placeholder="Cari bahan kimia...">
-    </div>
-
-    <!-- STATS -->
-    <div class="stats">
-      <div class="card">📄 <span id="totalDocs">0</span><p>Dokumen</p></div>
-      <div class="card">🔍 <span id="totalSearch">0</span><p>Pencarian</p></div>
-      <div class="card">📂 Library<p>MSDS</p></div>
     </div>
 
     <!-- MSDS -->
@@ -64,13 +55,12 @@
         <div class="viewer">
 
           <div class="info-bar">
-            📄 <span id="viewerTitle">Pilih dokumen</span>
-            <button id="downloadBtn">⬇ Download</button>
+            <span id="viewerTitle">Pilih dokumen</span>
           </div>
 
           <div id="emptyState">
-            <h3>📄 Pilih dokumen</h3>
-            <p>Gunakan search untuk menemukan file</p>
+            <h3>Pilih dokumen</h3>
+            <p>Silakan pilih dari daftar</p>
           </div>
 
           <iframe id="viewerFrame"></iframe>
@@ -82,36 +72,37 @@
     </section>
 
     <!-- GALLERY -->
-    <section id="gallery" class="section">
-      <h2>Gallery</h2>
+ <section id="gallery" class="section">
+  <h2>Gallery</h2>
 
-      <div class="gallery-grid" id="galleryGrid">
-        <img src="gallery/img1.jpeg">
-        <img src="gallery/img2.jpeg">
-        <img src="gallery/img3.jpeg">
-        <img src="gallery/img4.jpeg">
-        <img src="gallery/img5.jpeg">
-      </div>
+  <div class="gallery-grid" id="galleryGrid">
+    <img src="gallery/img1.jpeg">
+    <img src="gallery/img2.jpeg">
+    <img src="gallery/img3.jpeg">
+    <img src="gallery/img4.jpeg">
+    <img src="gallery/img5.jpeg">
+  </div>
 
-      <!-- MODAL -->
-      <div id="modal">
-        <span id="closeBtn">&times;</span>
-        <img id="modalImg">
-        <div class="nav prev">&#10094;</div>
-        <div class="nav next">&#10095;</div>
-      </div>
+  <!-- MODAL -->
+  <div id="modal">
+    <span id="closeBtn">&times;</span>
+    <img id="modalImg">
+    <div class="nav prev">&#10094;</div>
+    <div class="nav next">&#10095;</div>
+  </div>
 
-    </section>
+</section>
 
     <!-- ABOUT -->
     <section id="about" class="section">
       <h2>About</h2>
-      <p>TPTP 24B MSDS Library</p>
+      <p>YOW GUYS. This is TPTPB24 UGLY BASTARD PRESENT</p>
     </section>
 
   </main>
 </div>
 
 <script src="script.js"></script>
+
 </body>
 </html>
