@@ -10,7 +10,7 @@ const emptyState = document.getElementById('emptyState');
 // MASUK
 function enterApp() {
   document.getElementById('landing').style.display = 'none';
-  document.getElementById('app').style.display = 'flex';
+  document.getElementById('app').style.display = 'block';
   showSection('msds');
 }
 
@@ -19,13 +19,8 @@ function showSection(id, el) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 
-  document.querySelectorAll('.sidebar button').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.menu button').forEach(b => b.classList.remove('active'));
   if (el) el.classList.add('active');
-}
-
-// COLLAPSE
-function toggleSidebar() {
-  document.querySelector('.sidebar').classList.toggle('collapsed');
 }
 
 // LOAD DATA
@@ -34,8 +29,7 @@ fetch('./msds.json')
   .then(json => {
     data = json;
     render(data);
-  })
-  .catch(() => alert("Gagal load msds.json"));
+  });
 
 // SEARCH
 search.addEventListener('input', function () {
@@ -46,16 +40,20 @@ search.addEventListener('input', function () {
 // RENDER
 function render(items) {
   list.innerHTML = '';
+
   items.forEach(item => {
     const li = document.createElement('li');
     li.textContent = item.title;
+
     li.onclick = () => openFile(item.file, item.title);
+
     list.appendChild(li);
   });
 }
 
 // OPEN FILE
 function openFile(file, title) {
+
   const isMobile = window.innerWidth <= 768;
   const url = window.location.origin + file;
 
