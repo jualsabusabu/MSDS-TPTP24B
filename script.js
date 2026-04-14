@@ -7,15 +7,11 @@ const viewerFrame = document.getElementById('viewerFrame');
 const viewerTitle = document.getElementById('viewerTitle');
 const emptyState = document.getElementById('emptyState');
 
-// LOADER
-window.onload = () => {
-  document.getElementById('loader').style.display = 'none';
-};
-
 // MASUK
 function enterApp() {
   document.getElementById('landing').style.display = 'none';
-  document.getElementById('app').style.display = 'flex';
+  document.getElementById('app').style.display = 'block';
+  showSection('msds');
 }
 
 // NAV
@@ -23,7 +19,7 @@ function showSection(id, el) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 
-  document.querySelectorAll('.sidebar button').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.menu button').forEach(b => b.classList.remove('active'));
   if (el) el.classList.add('active');
 }
 
@@ -33,18 +29,12 @@ fetch('./msds.json')
   .then(json => {
     data = json;
     render(data);
-    document.getElementById('totalDocs').textContent = data.length;
   });
 
 // SEARCH
-let searchCount = 0;
-
 search.addEventListener('input', function () {
   const key = this.value.toLowerCase();
   render(data.filter(d => d.title.toLowerCase().includes(key)));
-
-  searchCount++;
-  document.getElementById('totalSearch').textContent = searchCount;
 });
 
 // RENDER
@@ -55,7 +45,12 @@ function render(items) {
     const li = document.createElement('li');
     li.textContent = item.title;
 
-    li.onclick = () => openFile(item.file, item.title);
+    li.onclick = () => {
+      document.querySelectorAll('.file-list li').forEach(el => el.classList.remove('active'));
+      li.classList.add('active');
+
+      openFile(item.file, item.title);
+    };
 
     list.appendChild(li);
   });
@@ -67,47 +62,37 @@ function openFile(file, title) {
   const isMobile = window.innerWidth <= 768;
   const url = window.location.origin + file;
 
-  document.getElementById('downloadBtn').onclick = () => {
-    window.open(url);
-  };
-
   if (isMobile) {
     window.open(url, "_blank");
     return;
   }
 
-  viewerFrame.src = url;
-  viewerTitle.textContent = title;
+  // loading state
+  viewerFrame.style.display = "none";
+  emptyState.innerHTML = "<h3>Loading dokumen...</h3>";
 
-  emptyState.style.display = "none";
-  viewerFrame.style.display = "block";
+  setTimeout(() => {
+    viewerFrame.src = url;
+    viewerTitle.textContent = title;
+
+    emptyState.style.display = "none";
+    viewerFrame.style.display = "block";
+  }, 600);
 }
 
-// ===== GALLERY =====
-const images = document.querySelectorAll('#galleryGrid img');
-const modal = document.getElementById('modal');
-const modalImg = document.getElementById('modalImg');
 
-let index = 0;
+// RIPPLE EFFECT GLOBAL
+document.addEventListener("click", function (e) {
+  if (e.target.tagName === "BUTTON" || e.target.tagName === "LI") {
+    const ripple = document.createElement("span");
+    ripple.classList.add("ripple");
 
-images.forEach((img, i) => {
-  img.onclick = () => {
-    modal.style.display = 'flex';
-    modalImg.src = img.src;
-    index = i;
-  };
+    e.target.appendChild(ripple);
+
+    const rect = e.target.getBoundingClientRect();
+    ripple.style.left = (e.clientX - rect.left) + "px";
+    ripple.style.top = (e.clientY - rect.top) + "px";
+
+    setTimeout(() => ripple.remove(), 600);
+  }
 });
-
-document.getElementById('closeBtn').onclick = () => {
-  modal.style.display = 'none';
-};
-
-document.querySelector('.next').onclick = () => {
-  index = (index + 1) % images.length;
-  modalImg.src = images[index].src;
-};
-
-document.querySelector('.prev').onclick = () => {
-  index = (index - 1 + images.length) % images.length;
-  modalImg.src = images[index].src;
-};
