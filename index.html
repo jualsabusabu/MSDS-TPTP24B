@@ -21,46 +21,45 @@
 <div id="app" class="dashboard">
 
   <!-- SIDEBAR -->
-  <aside class="sidebar">
+  <div class="sidebar">
+
     <div class="brand">
-      <img src="logo.png">
       <span>TPTP 24B</span>
+      <button onclick="toggleSidebar()" id="toggleBtn">☰</button>
     </div>
 
     <nav>
       <button onclick="showSection('msds')">📄 MSDS</button>
+      <button onclick="showSection('about')">ℹ️ About</button>
       <button onclick="showSection('gallery')">🖼 Gallery</button>
-      <button onclick="showSection('about')">ℹ About</button>
     </nav>
-  </aside>
+
+  </div>
 
   <!-- MAIN -->
-  <main class="main">
+  <div class="main">
 
-    <!-- TOPBAR -->
     <div class="topbar">
-      <h2>MSDS Library</h2>
-      <input type="text" id="search" placeholder="Cari bahan kimia...">
+      <h3>MSDS Library</h3>
+      <input type="text" id="search" placeholder="Cari bahan...">
     </div>
 
     <!-- MSDS -->
-    <section id="msds" class="section active">
-
+    <section id="msds" class="section">
       <div class="container">
 
-        <aside class="file-list">
+        <div class="file-list">
           <ul id="list"></ul>
-        </aside>
+        </div>
 
         <div class="viewer">
 
           <div class="info-bar">
-            <span id="viewerTitle">Pilih dokumen</span>
+            📄 <span id="viewerTitle">-</span>
           </div>
 
           <div id="emptyState">
             <h3>Pilih dokumen</h3>
-            <p>Silakan pilih dari daftar</p>
           </div>
 
           <iframe id="viewerFrame"></iframe>
@@ -68,7 +67,12 @@
         </div>
 
       </div>
+    </section>
 
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <h2>About</h2>
+      <p>TPTP 24B</p>
     </section>
 
     <!-- GALLERY -->
@@ -77,20 +81,13 @@
       <div class="gallery-grid">
         <img src="gallery/img1.jpeg">
         <img src="gallery/img2.jpeg">
-        <img src="gallery/img3.jpeg">
       </div>
     </section>
 
-    <!-- ABOUT -->
-    <section id="about" class="section">
-      <h2>About</h2>
-      <p>Website MSDS TPTP 24B</p>
-    </section>
+  </div>
 
-  </main>
 </div>
 
 <script src="script.js"></script>
-
 </body>
 </html>
