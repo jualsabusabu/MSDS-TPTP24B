@@ -18,69 +18,63 @@
 </section>
 
 <!-- APP -->
-<div id="app" class="dashboard">
+<div id="app">
 
-  <!-- SIDEBAR -->
-  <div class="sidebar">
-    <div class="brand">
-      <span>TPTP 24B</span>
-      <button onclick="toggleSidebar()">☰</button>
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <div class="logo">TPTP 24B</div>
+    <div class="menu">
+      <button onclick="showSection('msds', this)">MSDS</button>
+      <button onclick="showSection('about', this)">About</button>
+      <button onclick="showSection('gallery', this)">Gallery</button>
     </div>
-
-    <nav>
-      <button onclick="showSection('msds', this)">📄 MSDS</button>
-      <button onclick="showSection('about', this)">ℹ️ About</button>
-      <button onclick="showSection('gallery', this)">🖼 Gallery</button>
-    </nav>
   </div>
 
-  <!-- MAIN -->
-  <div class="main">
-
-    <div class="topbar">
-      <h3>MSDS Library</h3>
-      <input type="text" id="search" placeholder="Cari bahan...">
-    </div>
-
-    <!-- MSDS -->
-    <section id="msds" class="section">
-      <div class="container">
-
-        <div class="file-list">
-          <ul id="list"></ul>
-        </div>
-
-        <div class="viewer">
-          <div class="info-bar">
-            📄 <span id="viewerTitle">-</span>
-          </div>
-
-          <div id="emptyState">
-            <h3>Pilih dokumen</h3>
-          </div>
-
-          <iframe id="viewerFrame"></iframe>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" class="section">
-      <h2>About</h2>
-      <p>TPTP 24B</p>
-    </section>
-
-    <!-- GALLERY -->
-    <section id="gallery" class="section">
-      <h2>Gallery</h2>
-      <div class="gallery-grid">
-        <img src="gallery/img1.jpeg">
-        <img src="gallery/img2.jpeg">
-      </div>
-    </section>
-
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <h3>MSDS Library</h3>
+    <input type="text" id="search" placeholder="Cari bahan kimia...">
   </div>
+
+  <!-- MSDS -->
+  <section id="msds" class="section">
+    <div class="container">
+
+      <div class="file-list">
+        <ul id="list"></ul>
+      </div>
+
+      <div class="viewer">
+
+        <div class="info-bar">
+          📄 <span id="viewerTitle">-</span>
+        </div>
+
+        <div id="emptyState">
+          <h3>Pilih dokumen</h3>
+        </div>
+
+        <iframe id="viewerFrame"></iframe>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <h2>About</h2>
+    <p>TPTP 24B</p>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery" class="section">
+    <h2>Gallery</h2>
+    <div class="gallery-grid">
+      <img src="gallery/img1.jpeg">
+      <img src="gallery/img2.jpeg">
+    </div>
+  </section>
 
 </div>
 
