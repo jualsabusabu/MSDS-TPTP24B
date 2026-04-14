@@ -12,7 +12,7 @@ body {
 /* LANDING */
 #landing {
   height: 100vh;
-  background: url('bg.jpeg') center/cover;
+  background: url('bg.jpeg') center/cover no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,6 +26,7 @@ body {
   text-align: center;
 }
 
+/* APP */
 #app {
   display: none;
 }
@@ -43,47 +44,43 @@ body {
   padding: 20px;
 }
 
-/* LOGO */
 .brand {
   display: flex;
   align-items: center;
   gap: 10px;
   margin-bottom: 30px;
   cursor: pointer;
+  transition: 0.3s;
 }
 
-#logo {
+.brand img {
   width: 40px;
   transition: 0.3s;
 }
 
-/* HOVER EFFECT */
-.brand:hover #logo {
-  transform: scale(1.15) rotate(5deg);
-  filter: drop-shadow(0 0 8px #22c55e);
+.brand:hover img {
+  transform: rotate(10deg) scale(1.1);
 }
 
-/* NAV */
+/* BUTTON */
 .sidebar button {
   width: 100%;
   padding: 12px;
-  border-radius: 10px;
   margin-bottom: 8px;
-  background: transparent;
-  color: #cbd5f5;
+  border-radius: 10px;
+  background: #1e293b;
+  color: white;
   border: none;
-  text-align: left;
   cursor: pointer;
+  transition: 0.2s;
 }
 
 .sidebar button:hover {
-  background: #1e293b;
-  color: white;
+  background: #334155;
 }
 
 .sidebar button.active {
   background: #22c55e;
-  color: white;
 }
 
 /* MAIN */
@@ -111,60 +108,56 @@ body {
 .section {
   display: none;
   padding: 15px;
-  height: 100%;
 }
 
 .section.active {
   display: block;
 }
 
-/* CONTAINER FIX */
+/* CONTAINER */
 .container {
   display: flex;
   gap: 10px;
-  height: calc(100vh - 80px);
+  height: calc(100vh - 70px);
 }
 
 /* FILE LIST */
 .file-list {
   width: 260px;
-  background: white;
-  border-radius: 10px;
   overflow-y: auto;
 }
 
 .file-list li {
   list-style: none;
-  margin: 6px;
   padding: 12px;
-  background: #f8fafc;
-  border-radius: 8px;
+  margin: 6px;
+  background: white;
+  border-radius: 10px;
   cursor: pointer;
+  transition: 0.2s;
 }
 
 .file-list li:hover {
   background: #dcfce7;
+  transform: translateY(-2px);
 }
 
-/* VIEWER FIX (INI YANG NGEBENERIN LAYAR ABU2) */
+/* VIEWER */
 .viewer {
   flex: 1;
   display: flex;
   flex-direction: column;
-  background: white;
-  border-radius: 10px;
-  overflow: hidden;
 }
 
 .info-bar {
+  background: white;
   padding: 10px;
-  border-bottom: 1px solid #eee;
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
 
-/* FIX FRAME */
 #viewerFrame {
   flex: 1;
-  width: 100%;
   border: none;
   display: none;
 }
@@ -180,9 +173,6 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px,1fr));
   gap: 15px;
-  padding: 10px;
-  max-height: calc(100vh - 150px);
-  overflow-y: auto;
 }
 
 .gallery-grid img {
@@ -217,7 +207,7 @@ body {
 #closeBtn {
   position: absolute;
   top: 20px;
-  right: 40px;
+  right: 30px;
   font-size: 30px;
   color: white;
   cursor: pointer;
@@ -248,10 +238,25 @@ body {
     height: 60px;
     display: flex;
     justify-content: space-around;
+    padding: 0;
+  }
+
+  .sidebar nav {
+    display: flex;
+    width: 100%;
+  }
+
+  .sidebar button {
+    flex: 1;
+    font-size: 12px;
   }
 
   .brand {
     display: none;
+  }
+
+  .main {
+    padding-bottom: 70px;
   }
 
   .container {
