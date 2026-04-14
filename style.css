@@ -1,3 +1,4 @@
+/* RESET */
 * {
   margin: 0;
   padding: 0;
@@ -5,7 +6,7 @@
 }
 
 body {
-  font-family: Arial;
+  font-family: 'Segoe UI', sans-serif;
   background: #f1f5f9;
 }
 
@@ -20,112 +21,132 @@ body {
 
 .overlay {
   background: rgba(0,0,0,0.6);
-  padding: 40px;
+  padding: 30px;
   border-radius: 12px;
   color: white;
   text-align: center;
 }
 
+.overlay button {
+  margin-top: 15px;
+}
+
 /* APP */
 #app {
   display: none;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
 
-/* NAVBAR */
-.navbar {
+/* DASHBOARD */
+.dashboard {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 20px;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 230px;
   background: #0f172a;
   color: white;
+  padding: 20px;
 }
 
-.menu {
+.brand {
   display: flex;
+  align-items: center;
   gap: 10px;
+  margin-bottom: 30px;
 }
 
-/* BUTTON */
-button {
-  padding: 10px 16px;
-  border: none;
+.brand img {
+  width: 40px;
+}
+
+/* NAV BUTTON */
+.sidebar button {
+  width: 100%;
+  padding: 12px;
   border-radius: 10px;
-  background: linear-gradient(145deg,#3b82f6,#2563eb);
-  color: white;
+  margin-bottom: 8px;
+  background: transparent;
+  color: #cbd5f5;
+  border: none;
+  text-align: left;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
   transition: 0.2s;
 }
 
-button:hover {
-  transform: translateY(-2px);
+.sidebar button:hover {
+  background: #1e293b;
+  color: white;
 }
 
-button.active {
-  background: #22c55e;
+.sidebar button.active {
+  background: #16a34a;
+  color: white;
+}
+
+/* MAIN */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #f1f5f9;
 }
 
 /* TOPBAR */
 .topbar {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 15px;
+  padding: 15px 20px;
   background: white;
   border-bottom: 1px solid #e5e7eb;
 }
 
-#search {
+.topbar input {
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 8px;
   border: 1px solid #ccc;
-  width: 250px;
 }
 
 /* SECTION */
 .section {
   display: none;
-  flex: 1;
-  overflow: hidden;
+  padding: 15px;
 }
 
 .section.active {
-  display: flex;
+  display: block;
 }
 
 /* CONTAINER */
 .container {
   display: flex;
-  flex: 1;
-  overflow: hidden;
+  gap: 10px;
+  height: calc(100vh - 70px);
 }
 
 /* FILE LIST */
 .file-list {
   width: 260px;
   background: #f8fafc;
-  overflow-y: auto;
   padding: 10px;
-  border-right: 1px solid #e5e7eb;
+  overflow-y: auto;
+  border-radius: 10px;
 }
 
 .file-list li {
   list-style: none;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   padding: 12px;
   background: white;
-  border-radius: 10px;
+  border-radius: 8px;
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
   transition: 0.2s;
 }
 
 .file-list li:hover {
-  transform: translateY(-3px);
+  background: #dcfce7;
 }
 
 /* VIEWER */
@@ -133,7 +154,6 @@ button.active {
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 10px;
 }
 
 .info-bar {
@@ -141,7 +161,6 @@ button.active {
   padding: 10px;
   border-radius: 10px;
   margin-bottom: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
 
 #viewerFrame {
@@ -154,7 +173,7 @@ button.active {
 /* EMPTY */
 #emptyState {
   text-align: center;
-  margin-top: 100px;
+  margin-top: 50px;
   color: #64748b;
 }
 
@@ -163,7 +182,6 @@ button.active {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(120px,1fr));
   gap: 10px;
-  padding: 10px;
 }
 
 .gallery-grid img {
@@ -171,17 +189,59 @@ button.active {
   border-radius: 10px;
 }
 
+/* BUTTON GLOBAL */
+button {
+  padding: 8px 14px;
+  border-radius: 8px;
+  background: #16a34a;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #15803d;
+}
+
 /* ================= MOBILE ================= */
 @media (max-width: 768px) {
 
-  .navbar {
+  .dashboard {
     flex-direction: column;
-    gap: 10px;
-    text-align: center;
   }
 
-  .menu {
-    justify-content: center;
+  /* NAVBAR JADI BAWAH */
+  .sidebar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0;
+    z-index: 999;
+  }
+
+  .sidebar nav {
+    display: flex;
+    width: 100%;
+  }
+
+  .sidebar button {
+    flex: 1;
+    text-align: center;
+    font-size: 12px;
+    margin: 0;
+  }
+
+  .brand {
+    display: none;
+  }
+
+  .main {
+    padding-bottom: 70px;
   }
 
   .topbar {
@@ -189,20 +249,98 @@ button.active {
     gap: 10px;
   }
 
-  #search {
-    width: 100%;
-  }
-
   .container {
     flex-direction: column;
+    height: auto;
   }
 
   .file-list {
     width: 100%;
-    max-height: 200px;
+    max-height: 250px;
   }
 
   .viewer {
     height: 60vh;
   }
+}
+
+/* ================= GLOBAL BUTTON UPGRADE ================= */
+button {
+  background: linear-gradient(145deg, #22c55e, #16a34a);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  transition: all 0.2s ease;
+}
+
+/* HOVER (ngangkat dikit) */
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+}
+
+/* CLICK (ketekan) */
+button:active {
+  transform: translateY(1px);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+
+
+/* ================= SIDEBAR BUTTON ================= */
+.sidebar button {
+  background: linear-gradient(145deg, #1e293b, #0f172a);
+  box-shadow: inset 0 0 0 transparent;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+/* hover sidebar */
+.sidebar button:hover {
+  background: linear-gradient(145deg, #334155, #1e293b);
+}
+
+/* active sidebar */
+.sidebar button.active {
+  background: linear-gradient(145deg, #22c55e, #15803d);
+  box-shadow: 0 6px 15px rgba(34,197,94,0.4);
+}
+
+
+/* ================= LIST ITEM (MSDS FILE) ================= */
+.file-list li {
+  background: linear-gradient(145deg, #ffffff, #f1f5f9);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+  border: 1px solid rgba(0,0,0,0.03);
+}
+
+/* hover list */
+.file-list li:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(145deg, #dcfce7, #bbf7d0);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* click list */
+.file-list li:active {
+  transform: scale(0.98);
+}
+
+
+/* ================= CARD / BOX ================= */
+.header,
+.file-list,
+.viewer,
+.info-bar {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  border-radius: 12px;
+}
+
+
+/* ================= SEARCH INPUT ================= */
+.topbar input,
+#search {
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+  border: 1px solid #e2e8f0;
+}
+
+#search:focus {
+  box-shadow: 0 0 0 3px rgba(34,197,94,0.2);
+  border-color: #22c55e;
 }
