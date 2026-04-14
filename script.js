@@ -7,29 +7,25 @@ const viewerFrame = document.getElementById('viewerFrame');
 const viewerTitle = document.getElementById('viewerTitle');
 const emptyState = document.getElementById('emptyState');
 
-// MASUK APP
+// MASUK
 function enterApp() {
   document.getElementById('landing').style.display = 'none';
   document.getElementById('app').style.display = 'flex';
   showSection('msds');
 }
 
-// NAVIGATION
+// NAV
 function showSection(id) {
-  document.querySelectorAll('.section').forEach(sec => {
-    sec.classList.remove('active');
-  });
-
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 
-  // ACTIVE BUTTON
-  document.querySelectorAll('.sidebar button').forEach(btn => {
-    btn.classList.remove('active');
-  });
+  document.querySelectorAll('.sidebar button').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+}
 
-  if (event && event.target) {
-    event.target.classList.add('active');
-  }
+// COLLAPSE
+function toggleSidebar() {
+  document.querySelector('.sidebar').classList.toggle('collapsed');
 }
 
 // LOAD DATA
@@ -38,35 +34,22 @@ fetch('./msds.json')
   .then(json => {
     data = json;
     render(data);
-  })
-  .catch(err => {
-    console.error(err);
-    alert("Gagal load data MSDS");
   });
 
 // SEARCH
-if (search) {
-  search.addEventListener('input', function () {
-    const keyword = this.value.toLowerCase();
-    const filtered = data.filter(item =>
-      item.title.toLowerCase().includes(keyword)
-    );
-    render(filtered);
-  });
-}
+search.addEventListener('input', function () {
+  const key = this.value.toLowerCase();
+  render(data.filter(d => d.title.toLowerCase().includes(key)));
+});
 
-// RENDER LIST
+// RENDER
 function render(items) {
   list.innerHTML = '';
-
   items.forEach(item => {
-
     const li = document.createElement('li');
     li.textContent = item.title;
 
-    li.onclick = () => {
-      openFile(item.file, item.title);
-    };
+    li.onclick = () => openFile(item.file, item.title);
 
     list.appendChild(li);
   });
@@ -83,7 +66,7 @@ function openFile(file, title) {
     return;
   }
 
-  viewerFrame.src = url + "#zoom=page-width";
+  viewerFrame.src = url;
   viewerTitle.textContent = title;
 
   emptyState.style.display = "none";
