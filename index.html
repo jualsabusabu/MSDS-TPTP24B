@@ -22,18 +22,16 @@
 
   <!-- SIDEBAR -->
   <div class="sidebar">
-
     <div class="brand">
       <span>TPTP 24B</span>
-      <button onclick="toggleSidebar()" id="toggleBtn">☰</button>
+      <button onclick="toggleSidebar()">☰</button>
     </div>
 
     <nav>
-      <button onclick="showSection('msds')">📄 MSDS</button>
-      <button onclick="showSection('about')">ℹ️ About</button>
-      <button onclick="showSection('gallery')">🖼 Gallery</button>
+      <button onclick="showSection('msds', this)">📄 MSDS</button>
+      <button onclick="showSection('about', this)">ℹ️ About</button>
+      <button onclick="showSection('gallery', this)">🖼 Gallery</button>
     </nav>
-
   </div>
 
   <!-- MAIN -->
@@ -53,7 +51,6 @@
         </div>
 
         <div class="viewer">
-
           <div class="info-bar">
             📄 <span id="viewerTitle">-</span>
           </div>
@@ -63,7 +60,6 @@
           </div>
 
           <iframe id="viewerFrame"></iframe>
-
         </div>
 
       </div>
