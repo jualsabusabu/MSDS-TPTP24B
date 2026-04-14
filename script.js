@@ -7,20 +7,29 @@ const viewerFrame = document.getElementById('viewerFrame');
 const viewerTitle = document.getElementById('viewerTitle');
 const emptyState = document.getElementById('emptyState');
 
-// MASUK
+// MASUK APP
 function enterApp() {
   document.getElementById('landing').style.display = 'none';
-  document.getElementById('app').style.display = 'block';
+  document.getElementById('app').style.display = 'flex';
   showSection('msds');
 }
 
-// NAV
-function showSection(id, el) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+// NAVIGATION
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(sec => {
+    sec.classList.remove('active');
+  });
+
   document.getElementById(id).classList.add('active');
 
-  document.querySelectorAll('.menu button').forEach(b => b.classList.remove('active'));
-  if (el) el.classList.add('active');
+  // ACTIVE BUTTON
+  document.querySelectorAll('.sidebar button').forEach(btn => {
+    btn.classList.remove('active');
+  });
+
+  if (event && event.target) {
+    event.target.classList.add('active');
+  }
 }
 
 // LOAD DATA
@@ -29,26 +38,33 @@ fetch('./msds.json')
   .then(json => {
     data = json;
     render(data);
+  })
+  .catch(err => {
+    console.error(err);
+    alert("Gagal load data MSDS");
   });
 
 // SEARCH
-search.addEventListener('input', function () {
-  const key = this.value.toLowerCase();
-  render(data.filter(d => d.title.toLowerCase().includes(key)));
-});
+if (search) {
+  search.addEventListener('input', function () {
+    const keyword = this.value.toLowerCase();
+    const filtered = data.filter(item =>
+      item.title.toLowerCase().includes(keyword)
+    );
+    render(filtered);
+  });
+}
 
-// RENDER
+// RENDER LIST
 function render(items) {
   list.innerHTML = '';
 
   items.forEach(item => {
+
     const li = document.createElement('li');
     li.textContent = item.title;
 
     li.onclick = () => {
-      document.querySelectorAll('.file-list li').forEach(el => el.classList.remove('active'));
-      li.classList.add('active');
-
       openFile(item.file, item.title);
     };
 
@@ -67,32 +83,41 @@ function openFile(file, title) {
     return;
   }
 
-  // loading state
-  viewerFrame.style.display = "none";
-  emptyState.innerHTML = "<h3>Loading dokumen...</h3>";
+  viewerFrame.src = url + "#zoom=page-width";
+  viewerTitle.textContent = title;
 
-  setTimeout(() => {
-    viewerFrame.src = url;
-    viewerTitle.textContent = title;
-
-    emptyState.style.display = "none";
-    viewerFrame.style.display = "block";
-  }, 600);
+  emptyState.style.display = "none";
+  viewerFrame.style.display = "block";
 }
 
+// ===== GALLERY MODAL =====
+const images = document.querySelectorAll('#galleryGrid img');
+const modal = document.getElementById('modal');
+const modalImg = document.getElementById('modalImg');
 
-// RIPPLE EFFECT GLOBAL
-document.addEventListener("click", function (e) {
-  if (e.target.tagName === "BUTTON" || e.target.tagName === "LI") {
-    const ripple = document.createElement("span");
-    ripple.classList.add("ripple");
+let index = 0;
 
-    e.target.appendChild(ripple);
-
-    const rect = e.target.getBoundingClientRect();
-    ripple.style.left = (e.clientX - rect.left) + "px";
-    ripple.style.top = (e.clientY - rect.top) + "px";
-
-    setTimeout(() => ripple.remove(), 600);
-  }
+images.forEach((img, i) => {
+  img.addEventListener('click', () => {
+    modal.style.display = 'flex';
+    modalImg.src = img.src;
+    index = i;
+  });
 });
+
+// CLOSE
+document.getElementById('closeBtn').onclick = () => {
+  modal.style.display = 'none';
+};
+
+// NEXT
+document.querySelector('.next').onclick = () => {
+  index = (index + 1) % images.length;
+  modalImg.src = images[index].src;
+};
+
+// PREV
+document.querySelector('.prev').onclick = () => {
+  index = (index - 1 + images.length) % images.length;
+  modalImg.src = images[index].src;
+};
