@@ -22,16 +22,14 @@
 
   <!-- SIDEBAR -->
   <aside class="sidebar">
-
-    <!-- LOGO (CLICKABLE) -->
     <div class="brand" onclick="openIG()">
-      <img src="logo.png" id="logo">
+      <img src="logo.png">
       <span>TPTP 24B</span>
     </div>
 
     <nav>
       <button onclick="showSection('msds', this)">📂 MSDS</button>
-      <button onclick="showSection('gallery', this)">📸 Gallery</button>
+      <button onclick="showSection('gallery', this)">📷 Gallery</button>
       <button onclick="showSection('about', this)">📝 About</button>
     </nav>
   </aside>
@@ -45,7 +43,7 @@
     </div>
 
     <!-- MSDS -->
-    <section id="msds" class="section active">
+    <section id="msds" class="section">
       <div class="container">
 
         <aside class="file-list">
@@ -53,15 +51,18 @@
         </aside>
 
         <div class="viewer">
+
           <div class="info-bar">
             <span id="viewerTitle">Pilih dokumen</span>
           </div>
 
           <div id="emptyState">
             <h3>Pilih dokumen</h3>
+            <p>Silakan pilih dari daftar</p>
           </div>
 
           <iframe id="viewerFrame"></iframe>
+
         </div>
 
       </div>
@@ -79,6 +80,7 @@
         <img src="gallery/img5.jpeg">
       </div>
 
+      <!-- MODAL -->
       <div id="modal">
         <span id="closeBtn">&times;</span>
         <img id="modalImg">
