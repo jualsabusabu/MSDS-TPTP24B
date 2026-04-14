@@ -408,3 +408,20 @@ button:active {
 
 .prev { left: 20px; }
 .next { right: 20px; }
+
+/* BRAND LINK */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.brand:hover {
+  opacity: 0.8;
+  transform: translateY(-2px);
+}
