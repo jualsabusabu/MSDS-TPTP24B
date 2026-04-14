@@ -5,7 +5,7 @@
 }
 
 body {
-  font-family: sans-serif;
+  font-family: Arial;
   background: #f1f5f9;
 }
 
@@ -20,9 +20,9 @@ body {
 
 .overlay {
   background: rgba(0,0,0,0.6);
-  padding: 30px;
-  color: white;
+  padding: 40px;
   border-radius: 12px;
+  color: white;
   text-align: center;
 }
 
@@ -31,63 +31,51 @@ body {
   display: none;
 }
 
-.dashboard {
-  display: flex;
-  height: 100vh;
-}
-
-/* SIDEBAR */
-.sidebar {
-  width: 230px;
-  background: #0f172a;
-  color: white;
-  padding: 15px;
-  transition: 0.3s;
-}
-
-.sidebar.collapsed {
-  width: 70px;
-}
-
-.brand {
+/* NAVBAR */
+.navbar {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
+  padding: 15px 20px;
+  background: #0f172a;
+  color: white;
 }
 
-.sidebar button {
-  width: 100%;
-  margin-bottom: 8px;
-  padding: 12px;
-  border-radius: 10px;
+.menu button {
+  margin-left: 10px;
+}
+
+/* BUTTON GLOBAL */
+button {
+  padding: 10px 16px;
   border: none;
-  background: linear-gradient(145deg,#1e293b,#0f172a);
+  border-radius: 10px;
+  background: linear-gradient(145deg,#3b82f6,#2563eb);
   color: white;
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
   transition: 0.2s;
 }
 
-.sidebar button:hover {
+button:hover {
   transform: translateY(-2px);
 }
 
-.sidebar button.active {
+button.active {
   background: #22c55e;
 }
 
-/* MAIN */
-.main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
+/* TOPBAR */
 .topbar {
-  padding: 15px;
-  background: white;
   display: flex;
   justify-content: space-between;
+  padding: 15px;
+  background: white;
+}
+
+#search {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
 }
 
 /* SECTION */
@@ -103,11 +91,11 @@ body {
 /* CONTENT */
 .container {
   display: flex;
-  height: calc(100vh - 60px);
+  height: calc(100vh - 120px);
 }
 
 .file-list {
-  width: 250px;
+  width: 260px;
   overflow-y: auto;
 }
 
@@ -118,7 +106,7 @@ body {
   background: white;
   border-radius: 10px;
   cursor: pointer;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   transition: 0.2s;
 }
 
@@ -161,30 +149,6 @@ body {
 /* MOBILE */
 @media (max-width: 768px) {
 
-  .sidebar {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: 60px;
-    display: flex;
-    padding: 0;
-    z-index: 999;
-  }
-
-  .sidebar nav {
-    display: flex;
-    width: 100%;
-  }
-
-  .sidebar button {
-    flex: 1;
-    font-size: 12px;
-  }
-
-  .main {
-    padding-bottom: 70px;
-  }
-
   .container {
     flex-direction: column;
     height: auto;
@@ -197,5 +161,11 @@ body {
 
   .viewer {
     height: 60vh;
+  }
+
+  .navbar {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
   }
 }
