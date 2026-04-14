@@ -205,9 +205,15 @@ button:hover {
 /* ================= MOBILE ================= */
 @media (max-width: 768px) {
 
-  .dashboard {
-    flex-direction: column;
+  .section {
+    overflow-y: auto;
   }
+
+  #gallery {
+    padding-bottom: 80px; /* biar ga ketutup navbar bawah */
+  }
+
+}
 
   /* NAVBAR JADI BAWAH */
   .sidebar {
@@ -262,6 +268,7 @@ button:hover {
     height: 60vh;
   }
 }
+
 
 /* ================= GLOBAL BUTTON UPGRADE ================= */
 button {
@@ -362,6 +369,11 @@ button:active {
 
 .gallery-grid img:hover {
   transform: scale(1.05);
+}
+
+#gallery {
+  height: auto;
+  overflow-y: auto;
 }
 
 /* MODAL */
