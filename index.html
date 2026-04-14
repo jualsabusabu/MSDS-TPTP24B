@@ -22,28 +22,30 @@
 
   <!-- SIDEBAR -->
   <aside class="sidebar">
-    <div class="brand" onclick="openIG()">
+    <div class="brand">
       <img src="logo.png">
       <span>TPTP 24B</span>
     </div>
 
     <nav>
-      <button onclick="showSection('msds', this)">📂 MSDS</button>
-      <button onclick="showSection('gallery', this)">📷 Gallery</button>
-      <button onclick="showSection('about', this)">📝 About</button>
+      <button onclick="showSection('msds')">📂 MSDS</button>
+      <button onclick="showSection('gallery')">🎞️˙✧˖°📷 ༘ ⋆｡˚ Gallery</button>
+      <button onclick="showSection('about')">📝 About</button>
     </nav>
   </aside>
 
   <!-- MAIN -->
   <main class="main">
 
+    <!-- TOPBAR -->
     <div class="topbar">
       <h2>MSDS Library</h2>
       <input type="text" id="search" placeholder="Cari bahan kimia...">
     </div>
 
     <!-- MSDS -->
-    <section id="msds" class="section">
+    <section id="msds" class="section active">
+
       <div class="container">
 
         <aside class="file-list">
@@ -66,38 +68,41 @@
         </div>
 
       </div>
+
     </section>
 
     <!-- GALLERY -->
-    <section id="gallery" class="section">
-      <h2>Gallery</h2>
+ <section id="gallery" class="section">
+  <h2>Gallery</h2>
 
-      <div class="gallery-grid" id="galleryGrid">
-        <img src="gallery/img1.jpeg">
-        <img src="gallery/img2.jpeg">
-        <img src="gallery/img3.jpeg">
-        <img src="gallery/img4.jpeg">
-        <img src="gallery/img5.jpeg">
-      </div>
+  <div class="gallery-grid" id="galleryGrid">
+    <img src="gallery/img1.jpeg">
+    <img src="gallery/img2.jpeg">
+    <img src="gallery/img3.jpeg">
+    <img src="gallery/img4.jpeg">
+    <img src="gallery/img5.jpeg">
+  </div>
 
-      <!-- MODAL -->
-      <div id="modal">
-        <span id="closeBtn">&times;</span>
-        <img id="modalImg">
-        <div class="nav prev">&#10094;</div>
-        <div class="nav next">&#10095;</div>
-      </div>
-    </section>
+  <!-- MODAL -->
+  <div id="modal">
+    <span id="closeBtn">&times;</span>
+    <img id="modalImg">
+    <div class="nav prev">&#10094;</div>
+    <div class="nav next">&#10095;</div>
+  </div>
+
+</section>
 
     <!-- ABOUT -->
     <section id="about" class="section">
       <h2>About</h2>
-      <p>TPTP 24B</p>
+      <p>YOW GUYS. This is TPTPB24 UGLY BASTARD PRESENT</p>
     </section>
 
   </main>
 </div>
 
 <script src="script.js"></script>
+
 </body>
 </html>
