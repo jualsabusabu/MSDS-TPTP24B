@@ -72,21 +72,45 @@
     </section>
 
     <!-- GALLERY -->
- <section id="gallery" class="section">
+<section id="gallery" class="section">
   <h2>Gallery</h2>
 
   <div class="gallery-grid" id="galleryGrid">
-    <img src="gallery/img1.jpeg">
-    <img src="gallery/img2.jpeg">
-    <img src="gallery/img3.jpeg">
-    <img src="gallery/img4.jpeg">
-    <img src="gallery/img5.jpeg">
+
+    <div class="card" data-title="Praktikum 1" data-desc="Analisis bahan kimia">
+      <img src="gallery/img1.jpeg">
+    </div>
+
+    <div class="card" data-title="Praktikum 2" data-desc="Pengamatan laboratorium">
+      <img src="gallery/img2.jpeg">
+    </div>
+
+    <div class="card" data-title="Kegiatan Kelas" data-desc="Diskusi kelompok">
+      <img src="gallery/img3.jpeg">
+    </div>
+
+    <div class="card" data-title="Kegiatan Kelas" data-desc="Tongkrongan Kami Sopan">
+      <img src="gallery/img4.jpeg">
+    </div>
+
+    <div class="card" data-title="Kegiatan Kelas" data-desc="Tongkrongan yang Bukan Makan Teman">
+      <img src="gallery/img5.jpeg">
+    </div>
+
   </div>
 
   <!-- MODAL -->
   <div id="modal">
     <span id="closeBtn">&times;</span>
+
     <img id="modalImg">
+
+    <div class="caption">
+      <h3 id="modalTitle"></h3>
+      <p id="modalDesc"></p>
+      <span id="counter"></span>
+    </div>
+
     <div class="nav prev">&#10094;</div>
     <div class="nav next">&#10095;</div>
   </div>
