@@ -15,12 +15,12 @@ function enterApp() {
 }
 
 // NAV
-function showSection(id) {
+function showSection(id, el) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 
   document.querySelectorAll('.sidebar button').forEach(b => b.classList.remove('active'));
-  event.target.classList.add('active');
+  if (el) el.classList.add('active');
 }
 
 // COLLAPSE
@@ -34,7 +34,8 @@ fetch('./msds.json')
   .then(json => {
     data = json;
     render(data);
-  });
+  })
+  .catch(() => alert("Gagal load msds.json"));
 
 // SEARCH
 search.addEventListener('input', function () {
@@ -48,16 +49,13 @@ function render(items) {
   items.forEach(item => {
     const li = document.createElement('li');
     li.textContent = item.title;
-
     li.onclick = () => openFile(item.file, item.title);
-
     list.appendChild(li);
   });
 }
 
 // OPEN FILE
 function openFile(file, title) {
-
   const isMobile = window.innerWidth <= 768;
   const url = window.location.origin + file;
 
