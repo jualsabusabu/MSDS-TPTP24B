@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MSDS Library</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MSDS Library</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <!-- LANDING -->
 <section id="landing">
+  <div class="glow"></div>
+
   <div class="overlay">
-    <h1>MSDS Library</h1>
-    <p>Kumpulan dokumen keselamatan bahan kimia</p>
-    <button onclick="enterApp()">Masuk</button>
+    <h1>MSDS LIBRARY</h1>
+    <p>Digital Chemical Safety Database</p>
+    <button onclick="enterApp()">ENTER SYSTEM</button>
   </div>
 </section>
 
@@ -28,25 +34,23 @@
     </div>
 
     <nav>
-      <button onclick="showSection('msds')">📂 MSDS</button>
-      <button onclick="showSection('gallery')">🎞️˙✧˖°📷 ༘ ⋆｡˚ Gallery</button>
-      <button onclick="showSection('about')">📝 About</button>
+      <button onclick="showSection('msds', this)">MSDS</button>
+      <button onclick="showSection('gallery', this)">Gallery</button>
+      <button onclick="showSection('about', this)">About</button>
     </nav>
   </aside>
 
   <!-- MAIN -->
   <main class="main">
 
-    <!-- TOPBAR -->
     <div class="topbar">
-      <h2>MSDS Library</h2>
-      <input type="text" id="search" placeholder="Cari bahan kimia...">
+      <h2>Dashboard</h2>
+      <input type="text" id="search" placeholder="Search chemical...">
       <button onclick="toggleMusic()">🔊</button>
     </div>
 
     <!-- MSDS -->
     <section id="msds" class="section active">
-
       <div class="container">
 
         <aside class="file-list">
@@ -54,52 +58,48 @@
         </aside>
 
         <div class="viewer">
-
           <div class="info-bar">
-            <span id="viewerTitle">Pilih dokumen</span>
+            <span id="viewerTitle">No file selected</span>
+          </div>
+
+          <div id="emptyState">
+            Select a file to preview
           </div>
         </div>
 
       </div>
-
     </section>
 
     <!-- GALLERY -->
- <section id="gallery" class="section">
-  <h2>Gallery</h2>
+    <section id="gallery" class="section">
+      <div class="gallery-grid" id="galleryGrid">
+        <img src="gallery/img1.jpeg">
+        <img src="gallery/img2.jpeg">
+        <img src="gallery/img3.jpeg">
+        <img src="gallery/img4.jpeg">
+      </div>
 
-  <div class="gallery-grid" id="galleryGrid">
-    <img src="gallery/img1.jpeg">
-    <img src="gallery/img2.jpeg">
-    <img src="gallery/img3.jpeg">
-    <img src="gallery/img4.jpeg">
-    <img src="gallery/img5.jpeg">
-  </div>
-
-  <!-- MODAL -->
-  <div id="modal">
-    <span id="closeBtn">&times;</span>
-    <img id="modalImg">
-    <div class="nav prev">&#10094;</div>
-    <div class="nav next">&#10095;</div>
-  </div>
-
-</section>
+      <div id="modal">
+        <span id="closeBtn">&times;</span>
+        <img id="modalImg">
+        <div class="nav prev">&#10094;</div>
+        <div class="nav next">&#10095;</div>
+      </div>
+    </section>
 
     <!-- ABOUT -->
     <section id="about" class="section">
       <h2>About</h2>
-      <p>YOW GUYS. This is TPTPB24 UGLY BASTARD PRESENT</p>
+      <p>Minimal. Functional. Focused.</p>
     </section>
 
   </main>
 </div>
 
-  <audio id="bgm" loop>
+<audio id="bgm" loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <script src="script.js"></script>
-
 </body>
 </html>
