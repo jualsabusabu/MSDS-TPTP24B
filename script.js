@@ -7,7 +7,18 @@ const search = document.getElementById('search');
 function enterApp() {
   document.getElementById('landing').style.display = 'none';
   document.getElementById('app').style.display = 'flex';
+
   showSection('msds');
+
+  // 🔥 PLAY MUSIC (VALID karena hasil klik user)
+  const audio = document.getElementById("bgm");
+
+  if (audio) {
+    audio.volume = 0.5; // biar ga ngegas
+    audio.play().catch(err => {
+      console.log("Autoplay gagal:", err);
+    });
+  }
 }
 
 // NAVIGATION
