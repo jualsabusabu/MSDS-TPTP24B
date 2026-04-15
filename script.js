@@ -3,10 +3,6 @@ let data = [];
 const list = document.getElementById('list');
 const search = document.getElementById('search');
 
-const viewerFrame = document.getElementById('viewerFrame');
-const viewerTitle = document.getElementById('viewerTitle');
-const emptyState = document.getElementById('emptyState');
-
 // MASUK APP
 function enterApp() {
   document.getElementById('landing').style.display = 'none';
@@ -22,7 +18,6 @@ function showSection(id) {
 
   document.getElementById(id).classList.add('active');
 
-  // ACTIVE BUTTON
   document.querySelectorAll('.sidebar button').forEach(btn => {
     btn.classList.remove('active');
   });
@@ -65,29 +60,21 @@ function render(items) {
     li.textContent = item.title;
 
     li.onclick = () => {
-      openFile(item.file, item.title);
+      openFile(item.file);
     };
 
     list.appendChild(li);
   });
 }
 
-// OPEN FILE
-function openFile(file, title) {
+// OPEN FILE (🔥 FIX UTAMA)
+function openFile(file) {
 
-  const isMobile = window.innerWidth <= 768;
   const url = window.location.origin + file;
 
-  if (isMobile) {
-    window.open(url, "_blank");
-    return;
-  }
+  // LANGSUNG OPEN TAB BARU (DESKTOP + HP)
+  window.open(url, "_blank");
 
-  viewerFrame.src = url + "#zoom=page-width";
-  viewerTitle.textContent = title;
-
-  emptyState.style.display = "none";
-  viewerFrame.style.display = "block";
 }
 
 // ===== GALLERY MODAL =====
