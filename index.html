@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>MSDS Library</title>
+<title>MSDS System</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 
@@ -14,90 +14,72 @@
 
 <!-- LANDING -->
 <section id="landing">
-  <div class="glow"></div>
+  <div class="bg-noise"></div>
 
-  <div class="overlay">
-    <h1>MSDS LIBRARY</h1>
-    <p>Digital Chemical Safety Database</p>
-    <button onclick="enterApp()">ENTER SYSTEM</button>
+  <div class="hero">
+    <h1>MSDS SYSTEM</h1>
+    <p>Secure Chemical Documentation Platform</p>
+    <button onclick="enterApp()">ENTER</button>
   </div>
 </section>
 
 <!-- APP -->
-<div id="app" class="dashboard">
+<div id="app">
 
-  <!-- SIDEBAR -->
   <aside class="sidebar">
-    <div class="brand">
-      <img src="logo.png">
-      <span>TPTP 24B</span>
-    </div>
+    <h2>MSDS</h2>
 
-    <nav>
-      <button onclick="showSection('msds', this)">MSDS</button>
-      <button onclick="showSection('gallery', this)">Gallery</button>
-      <button onclick="showSection('about', this)">About</button>
-    </nav>
+    <button onclick="showSection('msds', this)">Files</button>
+    <button onclick="showSection('gallery', this)">Gallery</button>
+    <button onclick="showSection('about', this)">About</button>
   </aside>
 
-  <!-- MAIN -->
-  <main class="main">
+  <main>
 
     <div class="topbar">
-      <h2>Dashboard</h2>
-      <input type="text" id="search" placeholder="Search chemical...">
-      <button onclick="toggleMusic()">🔊</button>
+      <input type="text" id="search" placeholder="Search...">
+      <button onclick="toggleMusic()">♫</button>
     </div>
 
     <!-- MSDS -->
-    <section id="msds" class="section active">
-      <div class="container">
+    <section id="msds" class="active">
+      <div class="layout">
 
-        <aside class="file-list">
+        <div class="list">
           <ul id="list"></ul>
-        </aside>
+        </div>
 
         <div class="viewer">
-          <div class="info-bar">
-            <span id="viewerTitle">No file selected</span>
-          </div>
-
-          <div id="emptyState">
-            Select a file to preview
-          </div>
+          <h3 id="viewerTitle">No file selected</h3>
         </div>
 
       </div>
     </section>
 
     <!-- GALLERY -->
-    <section id="gallery" class="section">
-      <div class="gallery-grid" id="galleryGrid">
+    <section id="gallery">
+      <div class="grid" id="galleryGrid">
         <img src="gallery/img1.jpeg">
         <img src="gallery/img2.jpeg">
         <img src="gallery/img3.jpeg">
-        <img src="gallery/img4.jpeg">
       </div>
 
       <div id="modal">
-        <span id="closeBtn">&times;</span>
         <img id="modalImg">
-        <div class="nav prev">&#10094;</div>
-        <div class="nav next">&#10095;</div>
       </div>
     </section>
 
     <!-- ABOUT -->
-    <section id="about" class="section">
-      <h2>About</h2>
-      <p>Minimal. Functional. Focused.</p>
+    <section id="about">
+      <p>Built with precision.</p>
     </section>
 
   </main>
+
 </div>
 
 <audio id="bgm" loop>
-  <source src="music.mp3" type="audio/mpeg">
+  <source src="music.mp3">
 </audio>
 
 <script src="script.js"></script>
