@@ -119,3 +119,13 @@ document.querySelector('.prev').onclick = () => {
   index = (index - 1 + images.length) % images.length;
   modalImg.src = images[index].src;
 };
+//audioo
+function toggleMusic() {
+  const audio = document.getElementById("bgm");
+
+  if (audio.paused) {
+    audio.play();
+  } else {
+    audio.pause();
+  }
+}
