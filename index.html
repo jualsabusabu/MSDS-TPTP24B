@@ -1,85 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>MSDS Library</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-
-<!-- LANDING -->
 <section id="landing">
-  <div class="hero">
-    <h1>MSDS Library</h1>
-    <p>Simple chemical safety document system</p>
-    <button onclick="enterApp()">Masuk</button>
-  </div>
-</section>
 
-<!-- APP -->
-<div id="app">
+  <div class="hero-container">
 
-  <aside class="sidebar">
-    <h2>MSDS</h2>
+    <div class="hero-left">
+      <h1>
+        Understand <span>MSDS</span><br>
+        Before It's Too Late
+      </h1>
 
-    <button onclick="showSection('msds', this)">Files</button>
-    <button onclick="showSection('gallery', this)">Gallery</button>
-    <button onclick="showSection('about', this)">About</button>
-  </aside>
+      <p>
+        MSDS (Material Safety Data Sheet) adalah dokumen penting yang berisi 
+        informasi keselamatan bahan kimia. Tanpa MSDS, risiko kecelakaan kerja 
+        dan paparan berbahaya meningkat drastis.
+      </p>
 
-  <main>
-
-    <div class="topbar">
-      <input type="text" id="search" placeholder="Cari bahan...">
-      <button onclick="toggleMusic()">🔊</button>
+      <div class="hero-buttons">
+        <button onclick="enterApp()">Open Library</button>
+        <button class="secondary">Learn More</button>
+      </div>
     </div>
 
-    <!-- MSDS -->
-    <section id="msds" class="active">
-      <div class="layout">
+    <div class="hero-right">
+      <div class="orb"></div>
+    </div>
 
-        <div class="list">
-          <ul id="list"></ul>
-        </div>
+  </div>
 
-        <div class="viewer">
-          <h3 id="viewerTitle">Belum ada file</h3>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- GALLERY -->
-    <section id="gallery">
-      <div class="grid" id="galleryGrid">
-        <img src="gallery/img1.jpeg">
-        <img src="gallery/img2.jpeg">
-        <img src="gallery/img3.jpeg">
-      </div>
-
-      <div id="modal">
-        <img id="modalImg">
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about">
-      <p>Website sederhana untuk menyimpan MSDS.</p>
-    </section>
-
-  </main>
-
-</div>
-
-<audio id="bgm" loop>
-  <source src="music.mp3">
-</audio>
-
-<script src="script.js"></script>
-</body>
-</html>
+</section>
