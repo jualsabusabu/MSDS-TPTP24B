@@ -1,68 +1,72 @@
-let data = [];
+/* ================= PARTICLE ================= */
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
 
-const list = document.getElementById('list');
-const search = document.getElementById('search');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-function enterApp() {
-  document.getElementById('landing').style.display = 'none';
-  document.getElementById('app').style.display = 'flex';
+let particles = [];
 
-  const audio = document.getElementById("bgm");
-  audio.volume = 0.3;
-  audio.play().catch(()=>{});
-}
-
-function showSection(id, el) {
-  document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-
-  document.querySelectorAll('.sidebar button').forEach(b => b.classList.remove('active'));
-  el.classList.add('active');
-}
-
-fetch('./msds.json')
-.then(res => res.json())
-.then(json => {
-  data = json;
-  render(data);
-});
-
-function render(items){
-  list.innerHTML = '';
-
-  items.forEach(item=>{
-    const li = document.createElement('li');
-    li.textContent = item.title;
-
-    li.onclick = ()=>{
-      document.getElementById('viewerTitle').innerText = item.title;
-      window.open(window.location.origin + item.file);
-    };
-
-    list.appendChild(li);
+for(let i=0;i<80;i++){
+  particles.push({
+    x: Math.random()*canvas.width,
+    y: Math.random()*canvas.height,
+    r: Math.random()*2,
+    dx: (Math.random()-0.5)*0.5,
+    dy: (Math.random()-0.5)*0.5
   });
 }
 
-search.addEventListener('input', function(){
-  const keyword = this.value.toLowerCase();
-  render(data.filter(i=>i.title.toLowerCase().includes(keyword)));
-});
+function drawParticles(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
 
-function toggleMusic(){
-  const audio = document.getElementById("bgm");
-  audio.paused ? audio.play() : audio.pause();
+  particles.forEach(p=>{
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle="rgba(255,255,255,0.5)";
+    ctx.fill();
+
+    p.x += p.dx;
+    p.y += p.dy;
+
+    if(p.x<0 || p.x>canvas.width) p.dx *= -1;
+    if(p.y<0 || p.y>canvas.height) p.dy *= -1;
+  });
+
+  requestAnimationFrame(drawParticles);
 }
 
-/* gallery */
-const imgs = document.querySelectorAll('#galleryGrid img');
-const modal = document.getElementById('modal');
-const modalImg = document.getElementById('modalImg');
+drawParticles();
 
-imgs.forEach(img=>{
-  img.onclick = ()=>{
-    modal.style.display = 'flex';
-    modalImg.src = img.src;
-  }
+/* ================= SCROLL REVEAL ================= */
+const reveals = document.querySelectorAll('.reveal');
+
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('active');
+    }
+  });
 });
 
-modal.onclick = ()=> modal.style.display = 'none';
+reveals.forEach(r=>observer.observe(r));
+
+/* ================= TILT CARD ================= */
+const cards = document.querySelectorAll('.tilt');
+
+cards.forEach(card=>{
+  card.addEventListener('mousemove',(e)=>{
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const rotateX = (y / rect.height - 0.5) * -10;
+    const rotateY = (x / rect.width - 0.5) * 10;
+
+    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  });
+
+  card.addEventListener('mouseleave',()=>{
+    card.style.transform = `rotateX(0) rotateY(0)`;
+  });
+});
