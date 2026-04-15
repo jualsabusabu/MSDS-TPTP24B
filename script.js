@@ -1,72 +1,131 @@
-/* ================= PARTICLE ================= */
-const canvas = document.getElementById("particles");
-const ctx = canvas.getContext("2d");
+let data = [];
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+const list = document.getElementById('list');
+const search = document.getElementById('search');
 
-let particles = [];
+// MASUK APP
+function enterApp() {
+  document.getElementById('landing').style.display = 'none';
+  document.getElementById('app').style.display = 'flex';
 
-for(let i=0;i<80;i++){
-  particles.push({
-    x: Math.random()*canvas.width,
-    y: Math.random()*canvas.height,
-    r: Math.random()*2,
-    dx: (Math.random()-0.5)*0.5,
-    dy: (Math.random()-0.5)*0.5
+  showSection('msds');
+
+  // 🔥 PLAY MUSIC (VALID karena hasil klik user)
+  const audio = document.getElementById("bgm");
+
+  if (audio) {
+    audio.volume = 0.5; // biar ga ngegas
+    audio.play().catch(err => {
+      console.log("Autoplay gagal:", err);
+    });
+  }
+}
+
+// NAVIGATION
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(sec => {
+    sec.classList.remove('active');
+  });
+
+  document.getElementById(id).classList.add('active');
+
+  document.querySelectorAll('.sidebar button').forEach(btn => {
+    btn.classList.remove('active');
+  });
+
+  if (event && event.target) {
+    event.target.classList.add('active');
+  }
+}
+
+// LOAD DATA
+fetch('./msds.json')
+  .then(res => res.json())
+  .then(json => {
+    data = json;
+    render(data);
+  })
+  .catch(err => {
+    console.error(err);
+    alert("Gagal load data MSDS");
+  });
+
+// SEARCH
+if (search) {
+  search.addEventListener('input', function () {
+    const keyword = this.value.toLowerCase();
+    const filtered = data.filter(item =>
+      item.title.toLowerCase().includes(keyword)
+    );
+    render(filtered);
   });
 }
 
-function drawParticles(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
+// RENDER LIST
+function render(items) {
+  list.innerHTML = '';
 
-  particles.forEach(p=>{
-    ctx.beginPath();
-    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-    ctx.fillStyle="rgba(255,255,255,0.5)";
-    ctx.fill();
+  items.forEach(item => {
 
-    p.x += p.dx;
-    p.y += p.dy;
+    const li = document.createElement('li');
+    li.textContent = item.title;
 
-    if(p.x<0 || p.x>canvas.width) p.dx *= -1;
-    if(p.y<0 || p.y>canvas.height) p.dy *= -1;
+    li.onclick = () => {
+      openFile(item.file);
+    };
+
+    list.appendChild(li);
   });
-
-  requestAnimationFrame(drawParticles);
 }
 
-drawParticles();
+// OPEN FILE (🔥 FIX UTAMA)
+function openFile(file) {
 
-/* ================= SCROLL REVEAL ================= */
-const reveals = document.querySelectorAll('.reveal');
+  const url = window.location.origin + file;
 
-const observer = new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add('active');
-    }
+  // LANGSUNG OPEN TAB BARU (DESKTOP + HP)
+  window.open(url, "_blank");
+
+}
+
+// ===== GALLERY MODAL =====
+const images = document.querySelectorAll('#galleryGrid img');
+const modal = document.getElementById('modal');
+const modalImg = document.getElementById('modalImg');
+
+let index = 0;
+
+images.forEach((img, i) => {
+  img.addEventListener('click', () => {
+    modal.style.display = 'flex';
+    modalImg.src = img.src;
+    index = i;
   });
 });
 
-reveals.forEach(r=>observer.observe(r));
+// CLOSE
+document.getElementById('closeBtn').onclick = () => {
+  modal.style.display = 'none';
+};
 
-/* ================= TILT CARD ================= */
-const cards = document.querySelectorAll('.tilt');
+// NEXT
+document.querySelector('.next').onclick = () => {
+  index = (index + 1) % images.length;
+  modalImg.src = images[index].src;
+};
 
-cards.forEach(card=>{
-  card.addEventListener('mousemove',(e)=>{
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+// PREV
+document.querySelector('.prev').onclick = () => {
+  index = (index - 1 + images.length) % images.length;
+  modalImg.src = images[index].src;
+};
+//audioo
+function toggleMusic() {
+  const audio = document.getElementById("bgm");
 
-    const rotateX = (y / rect.height - 0.5) * -10;
-    const rotateY = (x / rect.width - 0.5) * 10;
-
-    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-  });
-
-  card.addEventListener('mouseleave',()=>{
-    card.style.transform = `rotateX(0) rotateY(0)`;
-  });
-});
+  if (audio.paused) {
+    audio.play();
+  } else {
+    audio.pause();
+  }
+}
