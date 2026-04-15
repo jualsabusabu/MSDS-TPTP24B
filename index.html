@@ -1,76 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MSDS Library</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- LANDING -->
 <section id="landing">
+  <div class="overlay">
+    <h1>MSDS Library</h1>
+    <p>Kumpulan dokumen keselamatan bahan kimia</p>
+    <button onclick="enterApp()">Masuk</button>
+  </div>
+</section>
 
-  <!-- PARTICLE -->
-  <canvas id="particles"></canvas>
+<!-- APP -->
+<div id="app" class="dashboard">
 
-  <!-- HERO -->
-  <div class="hero-container reveal">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="brand">
+      <img src="logo.png">
+      <span>TPTP 24B</span>
+    </div>
 
-    <div class="hero-left">
-      <h1>
-        What is <span>MSDS</span> and Why It Matters
-      </h1>
+    <nav>
+      <button onclick="showSection('msds')">📂 MSDS</button>
+      <button onclick="showSection('gallery')">🎞️˙✧˖°📷 ༘ ⋆｡˚ Gallery</button>
+      <button onclick="showSection('about')">📝 About</button>
+    </nav>
+  </aside>
 
-      <p>
-        MSDS (Material Safety Data Sheet) adalah dokumen penting yang berisi 
-        informasi keselamatan bahan kimia untuk mencegah kecelakaan, paparan berbahaya,
-        dan kesalahan penanganan.
-      </p>
+  <!-- MAIN -->
+  <main class="main">
 
-      <div class="hero-buttons">
-        <button onclick="enterApp()">Open Library</button>
-        <button class="secondary">Learn More</button>
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <h2>MSDS Library</h2>
+      <input type="text" id="search" placeholder="Cari bahan kimia...">
+      <button onclick="toggleMusic()">🔊</button>
+    </div>
+
+    <!-- MSDS -->
+    <section id="msds" class="section active">
+
+      <div class="container">
+
+        <aside class="file-list">
+          <ul id="list"></ul>
+        </aside>
+
+        <div class="viewer">
+
+          <div class="info-bar">
+            <span id="viewerTitle">Pilih dokumen</span>
+          </div>
+        </div>
+
       </div>
-    </div>
 
-    <div class="hero-right">
-      <img src="gallery/img1.jpeg">
-    </div>
+    </section>
 
+    <!-- GALLERY -->
+ <section id="gallery" class="section">
+  <h2>Gallery</h2>
+
+  <div class="gallery-grid" id="galleryGrid">
+    <img src="gallery/img1.jpeg">
+    <img src="gallery/img2.jpeg">
+    <img src="gallery/img3.jpeg">
+    <img src="gallery/img4.jpeg">
+    <img src="gallery/img5.jpeg">
   </div>
 
-  <!-- SECTION 2 -->
-  <div class="info-section reveal">
-    <h2>Kenapa MSDS Itu Penting?</h2>
-
-    <div class="info-grid">
-      <div class="card tilt">
-        <h3>Keselamatan Kerja</h3>
-        <p>Menghindari kecelakaan akibat bahan kimia berbahaya.</p>
-      </div>
-
-      <div class="card tilt">
-        <h3>Informasi Risiko</h3>
-        <p>Menjelaskan efek kesehatan dan bahaya bahan.</p>
-      </div>
-
-      <div class="card tilt">
-        <h3>Penanganan Darurat</h3>
-        <p>Memberi panduan jika terjadi kebocoran atau paparan.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- SECTION 3 -->
-  <div class="info-section alt reveal">
-    <h2>Apa Isi MSDS?</h2>
-
-    <div class="info-grid">
-      <div class="card tilt">
-        <h3>Identifikasi Bahan</h3>
-        <p>Nama, komposisi, dan informasi produk.</p>
-      </div>
-
-      <div class="card tilt">
-        <h3>Bahaya</h3>
-        <p>Klasifikasi bahaya dan label peringatan.</p>
-      </div>
-
-      <div class="card tilt">
-        <h3>Penanganan</h3>
-        <p>Cara penyimpanan dan penggunaan aman.</p>
-      </div>
-    </div>
+  <!-- MODAL -->
+  <div id="modal">
+    <span id="closeBtn">&times;</span>
+    <img id="modalImg">
+    <div class="nav prev">&#10094;</div>
+    <div class="nav next">&#10095;</div>
   </div>
 
 </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <h2>About</h2>
+      <p>YOW GUYS. This is TPTPB24 UGLY BASTARD PRESENT</p>
+    </section>
+
+  </main>
+</div>
+
+  <audio id="bgm" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script src="script.js"></script>
+
+</body>
+</html>
