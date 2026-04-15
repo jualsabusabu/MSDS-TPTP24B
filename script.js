@@ -3,92 +3,60 @@ let data = [];
 const list = document.getElementById('list');
 const search = document.getElementById('search');
 
-// MASUK APP
 function enterApp() {
   document.getElementById('landing').style.display = 'none';
   document.getElementById('app').style.display = 'flex';
 
-  showSection('msds');
-
-  // 🔥 PLAY MUSIC (VALID karena hasil klik user)
   const audio = document.getElementById("bgm");
-
-  if (audio) {
-    audio.volume = 0.5; // biar ga ngegas
-    audio.play().catch(err => {
-      console.log("Autoplay gagal:", err);
-    });
-  }
+  audio.volume = 0.4;
+  audio.play().catch(() => {});
 }
 
-// NAVIGATION
-function showSection(id) {
-  document.querySelectorAll('.section').forEach(sec => {
-    sec.classList.remove('active');
-  });
-
+function showSection(id, el) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 
-  document.querySelectorAll('.sidebar button').forEach(btn => {
-    btn.classList.remove('active');
-  });
-
-  if (event && event.target) {
-    event.target.classList.add('active');
-  }
+  document.querySelectorAll('.sidebar button').forEach(b => b.classList.remove('active'));
+  if (el) el.classList.add('active');
 }
 
-// LOAD DATA
 fetch('./msds.json')
   .then(res => res.json())
   .then(json => {
     data = json;
     render(data);
-  })
-  .catch(err => {
-    console.error(err);
-    alert("Gagal load data MSDS");
   });
 
-// SEARCH
-if (search) {
-  search.addEventListener('input', function () {
-    const keyword = this.value.toLowerCase();
-    const filtered = data.filter(item =>
-      item.title.toLowerCase().includes(keyword)
-    );
-    render(filtered);
-  });
-}
-
-// RENDER LIST
 function render(items) {
   list.innerHTML = '';
 
   items.forEach(item => {
-
     const li = document.createElement('li');
     li.textContent = item.title;
 
     li.onclick = () => {
-      openFile(item.file);
+      document.getElementById('viewerTitle').innerText = item.title;
+      window.open(window.location.origin + item.file, "_blank");
     };
 
     list.appendChild(li);
   });
 }
 
-// OPEN FILE (🔥 FIX UTAMA)
-function openFile(file) {
+search.addEventListener('input', function () {
+  const keyword = this.value.toLowerCase();
+  const filtered = data.filter(item =>
+    item.title.toLowerCase().includes(keyword)
+  );
+  render(filtered);
+});
 
-  const url = window.location.origin + file;
-
-  // LANGSUNG OPEN TAB BARU (DESKTOP + HP)
-  window.open(url, "_blank");
-
+function toggleMusic() {
+  const audio = document.getElementById("bgm");
+  audio.paused ? audio.play() : audio.pause();
 }
 
-// ===== GALLERY MODAL =====
+/* GALLERY */
 const images = document.querySelectorAll('#galleryGrid img');
 const modal = document.getElementById('modal');
 const modalImg = document.getElementById('modalImg');
@@ -96,36 +64,21 @@ const modalImg = document.getElementById('modalImg');
 let index = 0;
 
 images.forEach((img, i) => {
-  img.addEventListener('click', () => {
+  img.onclick = () => {
     modal.style.display = 'flex';
     modalImg.src = img.src;
     index = i;
-  });
+  };
 });
 
-// CLOSE
-document.getElementById('closeBtn').onclick = () => {
-  modal.style.display = 'none';
-};
+document.getElementById('closeBtn').onclick = () => modal.style.display = 'none';
 
-// NEXT
 document.querySelector('.next').onclick = () => {
   index = (index + 1) % images.length;
   modalImg.src = images[index].src;
 };
 
-// PREV
 document.querySelector('.prev').onclick = () => {
   index = (index - 1 + images.length) % images.length;
   modalImg.src = images[index].src;
 };
-//audioo
-function toggleMusic() {
-  const audio = document.getElementById("bgm");
-
-  if (audio.paused) {
-    audio.play();
-  } else {
-    audio.pause();
-  }
-}
